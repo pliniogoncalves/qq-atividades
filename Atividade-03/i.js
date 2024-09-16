@@ -3,8 +3,10 @@ i.Efetuar a leitura de um número inteiro e apresentar o resultado do quadrado
 desse número. 
 */
 
-let numero = parseInt(prompt("Digite o valor do numero inteiro"));
+function calcularQuadrado(){
+    let numero = parseInt(document.getElementById("numero").value);
 
-let quadrado = numero * numero ;
+    let quadrado = numero * numero ;
 
-alert(`O quadrado de ${numero} é ${quadrado}`);
+    document.getElementById("resultado").innerText = `O quadrado de ${numero} é ${quadrado}`;
+}
