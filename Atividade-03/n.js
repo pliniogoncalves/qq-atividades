@@ -3,10 +3,12 @@ n. Elaborar um programa que efetue a leitura de três valores (A, B e C) e apres
 quadrado da soma dos três valores lidos.
 */
 
-let a = parseInt(prompt("Digite o valor do primeiro numero"));
-let b = parseInt(prompt("Digite o valor do segundo numero"));
-let c = parseInt(prompt("Digite o valor do terceiro numero"));
+function somaQuadrados(){
+    let a = parseInt(document.getElementById("a").value);
+    let b = parseInt(document.getElementById("b").value);
+    let c = parseInt(document.getElementById("c").value);
 
-let resultado = (a + b + c) * (a + b + c);
+    let resultado = (a + b + c) * (a + b + c);
 
-alert(`O quadrado da soma de ${a}, ${b} e ${c} é ${resultado}`);
+    document.getElementById("resultado").innerText = `O quadrado da soma de ${a}, ${b} e ${c} é ${resultado}`;
+}
