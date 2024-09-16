@@ -3,9 +3,11 @@ c. Calcular e apresentar o valor do volume de uma lata de óleo, utilizando a
 fórmula VOLUME ← 3.14159 * R ↑ 2 * ALTURA
 */
 
-let raio = parseFloat(prompt(`Digite o valor do Raio`));
-let altura = parseFloat(prompt(`Digite o valor da Altura`));
+function calcularVolume(){
+    let raio = parseFloat(document.getElementById("raio").value);
+    let altura = parseFloat(document.getElementById("altura").value);
 
-let volume = 3.14159 * (raio * raio) * altura;
+    let volume = 3.14159 * (raio * raio) * altura;
 
-alert(`O valor do volume é ${volume} cm³`);
+    document.getElementById("resultado").innerText = `O valor do volume é ${volume} cm³`;
+}
