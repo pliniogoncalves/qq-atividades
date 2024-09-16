@@ -3,11 +3,14 @@ h. Elaborar um programa que calcule e apresente o volume de uma caixa retangular
 VOLUME ← COMPRIMENTO * LARGURA * ALTURA.
 */
 
-let comprimento = parseFloat(prompt("Digite o valor do comprimento"));
-let largura = parseFloat(prompt("Digite o valor da largura"));
-let altura = parseFloat(prompt("Digite o tamanho da altura"));
+function calculoVolume(){
+    let comprimento = parseFloat(document.getElementById("comprimento").value);
+    let largura = parseFloat(document.getElementById("largura").value);
+    let altura = parseFloat(document.getElementById("altura").value);
 
-let volume = comprimento * largura * altura;
+    let volume = comprimento * largura * altura;
 
-alert(`O volume da caixa retangular é ${volume}`);
+    document.getElementById("resultado").innerText = `O volume da caixa retangular é ${volume}`;
+}
+
 
