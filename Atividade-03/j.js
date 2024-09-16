@@ -3,9 +3,11 @@ j. Ler dois inteiros (variáveis A e B) e imprimir o resultado do quadrado da di
 segundo.
 */
 
-let A = parseInt(prompt("Digite o valor do primeiro numero"));
-let B = parseInt(prompt("Digite o valor do segundo numero"));
+function calcularDiferenca(){
+    let a = parseInt(document.getElementById("a").value);
+    let b = parseInt(document.getElementById("b").value);
 
-let quadrado_diferenca = (A - B)*(A - B);
+    let quadrado_diferenca = (a - b)*(a - b);
 
-alert(`O quadrado da diferença entre ${A} e ${B} é ${quadrado_diferenca}`);
+    document.getElementById("resultado").innerText = `O quadrado da diferença entre ${a} e ${b} é ${quadrado_diferenca}`;
+}
