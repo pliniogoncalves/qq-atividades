@@ -3,9 +3,11 @@ l. Elaborar um programa que efetue a apresentação do valor da conversão em d�
 (R$). O programa deve solicitar o valor da cotação do dólar e também a quantidade de reais disponível com o usuário.
 */
 
-let real = parseFloat(prompt("Digite o valor que você possui em real(R$)"));
-let cotacao = parseFloat(prompt("Digite o valor da cotaçao do real em dolar(US$)"));
+function converter(){
+    let real = parseFloat(document.getElementById("real").value);
+    let cotacao = parseFloat(document.getElementById("cotacao").value);
 
-let dolar = real / cotacao;
+    let dolar = real / cotacao;
 
-alert(`voce tem ${real} reais e em dolar você tem ${dolar}`);
+    document.getElementById("resultado").innerText = `Você tem R$${real} reais, e em dolar você tem US$${dolar} dolares`;
+}
