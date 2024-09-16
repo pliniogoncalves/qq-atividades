@@ -3,8 +3,12 @@ a. Ler uma temperatura em graus Celsius e apresentá-la convertida em graus Fahr
 F ← (9 * C + 160) / 5, sendo F a temperatura em Fahrenheit e C a temperatura em Celsius.
 */
 
-let celsius = parseFloat(prompt("Digite a temperatura em Celcius"));
+function conveterFahrenheit(){
+    let celsius = parseFloat(document.getElementById("celsius").value);
 
-let fahrenheit = ((9 * celsius) + 160) / 5;
+    let fahrenheit = ((9 * celsius) + 160) / 5;
 
-alert(`A temperatura em Celsius ${celsius} convertida em Fahrenheit é ${fahrenheit}`);
+    document.getElementById("resultado").innerText = `A temperatura em Celsius ${celsius}°C convertida em Fahrenheit é ${fahrenheit}°F.`;
+}
+
+
