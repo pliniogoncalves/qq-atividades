@@ -16,8 +16,5 @@ function verificar(){
         `;
     }else{
         document.getElementById("resultado").innerHTML = `Seção finalizada`;
-    }
-    
-    
-    
+    }   
 }
