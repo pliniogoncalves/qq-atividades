@@ -10,7 +10,25 @@ function ordenar(){
 
     if((Number.isInteger(a))&&(Number.isInteger(b))&&(Number.isInteger(c))){
         if((a !== b) && (a !== c) && (b !== c)){
-            
+            if(a > b && a > c){
+                if(b > c){
+                    document.getElementById("resultado").innerHTML = `${a}-${b}-${c}`; 
+                }else{
+                    document.getElementById("resultado").innerHTML = `${a}-${c}-${b}`;
+                }
+            }else if(b > a && b > c){
+                if(a > c){
+                    document.getElementById("resultado").innerHTML = `${b}-${a}-${c}`;
+                }else{
+                    document.getElementById("resultado").innerHTML = `${b}-${c}-${a}`;
+                }
+            }else{
+                if(a > b){
+                    document.getElementById("resultado").innerHTML = `${c}-${a}-${b}`;
+                }else{
+                    document.getElementById("resultado").innerHTML = `${c}-${b}-${a}`;
+                }
+            }
         }else{
             document.getElementById("resultado").innerHTML = `Digite numeros diferentes`;    
         }
