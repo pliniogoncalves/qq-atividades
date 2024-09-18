@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUESTÃO 09</title>
+    <title>Questão 09</title>
 </head>
 <body>
-    
+    <h1>Questão 09</h1>
+
+    <p>
+        Tendo como dados de entrada a altura e o sexo de uma pessoa, construa um algoritmo que
+        calcule seu peso ideal, utilizando as seguintes fórmulas:
+        para homens: (72.7 * h) – 58;
+        para mulheres: (62.1 * h) – 44.7. 
+    </p>
+
+    <label for="sexo">Digite o seu sexo(M ou F): </label><br>
+    <input type="text" id="sexo"><br>
+
+    <label for="altura">Digite sua altura: </label><br>
+    <input type="number" id="altura"><br>
+
+    <button onclick="calcularPeso()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <h2>
+        <a href="../index.html">VOLTAR PARA AS QUESTÕES</a>
+    </h2>
+
+    <script src="09.js"></script>
 </body>
 </html>
