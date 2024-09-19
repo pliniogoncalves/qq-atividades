@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 03</title>
+</head>
+<body>
+    <h1>Questão 03</h1>
+
+    <p>
+        Escreva um algoritmo que leia o número de identificação de cada aluno de uma turma, as 3 notas obtidas por um aluno nas 3 verificações e a média dos exercícios que fazem parte da avaliação, e calcule a média de aproveitamento de cada aluno, usando a fórmula: <br><br>
+
+        MA := (nota1 + nota 2 * 2 + nota 3 * 3 + ME)/7 <br><br>
+
+        A atribuição dos conceitos obedece a tabela abaixo. O algoritmo deve escrever o número do aluno de cada aluno, suas notas, a média dos exercícios, a média de aproveitamento, o conceito correspondente e a mensagem 'Aprovado' se o conceito for A, B ou C, e 'Reprovado' se o conceito for D ou E. <br>
+
+        Média de aproveitamento Conceito <br><br>
+
+        >= 90 A<br>
+
+        >= 75 e < 90 B<br>
+
+        >= 60 e < 75 C<br>
+
+        >= 40 e < 60 D<br>
+
+        < 40 E<br>
+    </p>
+
+    <form id="alunoForm">
+        <label for="numAlunos">Digite o numero de Alunos: </label><br>
+        <input type="number" id="numAlunos" required><br>
+        <button type="button" onclick="cadastroAlunos()">Iniciar Cadastro</button>
+    </form>
+
+    <div id="cadastroNotas" style="display: none;">
+        <h2>Notas</h2>
+        <div id="alunoNotaContainer"></div>
+        <button onclick="calcularNota()">Calcular Nota</button>
+    </div>
+
+    <div id="resultado" style="display: none;">
+        <h2>Resultados</h2>
+        <p id="resultadoTexto"></p>
+    </div>
+
+    <h2>
+        <a href="../index.html">VOLTAR PARA AS QUESTÕES</a>
+    </h2>
+
+    <script src="03.js"></script>
+</body>
+</html>
