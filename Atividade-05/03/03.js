@@ -128,19 +128,21 @@ function calcularNota(){
             conceito: conceito,
             status: status
         });
+    }
 
-
+    for(let j = 0; j < numAlunos; j++){
         resultadoTexto.innerHTML += `
-            Aluno: ${id}<br>
-            Nota 1: ${nota1}<br>
-            Nota 2: ${nota2}<br>
-            Nota 3: ${nota3}<br>
-            Media dos Exercicios: ${mediaExercicios}<br>
-            Media Aproveitamento: ${media}<br>
-            Conceito: ${conceito}<br>
-            <h3>Status: ${status}</h3><br>
+            Aluno: ${alunos[j].id}<br>
+            Nota 1: ${alunos[j].nota1}<br>
+            Nota 2: ${alunos[j].nota2}<br>
+            Nota 3: ${alunos[j].nota3}<br>
+            Media dos Exercicios: ${alunos[j].mediaExercicios}<br>
+            Media Aproveitamento: ${alunos[j].media.toFixed(2)}<br>
+            Conceito: ${alunos[j].conceito}<br>
+            <h3>Status: ${alunos[j].status}</h3><br>
         `;
     }
+
     document.getElementById("resultado").style.display = 'block';
     
 }
