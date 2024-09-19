@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 02</title>
+</head>
+<body>
+    <h1>Questão 02</h1>
+
+    <p>
+        O IMC – Indice de Massa Corporal é um critério da Organização Mundial de Saúde para dar uma indicação sobre a condição de peso de uma pessoa adulta.<br> A fórmula é IMC = peso / ( altura )². <br>
+
+        Elabore um algoritmo que leia o peso e a altura de uma quantidade de pessoas(usuário deve definir esse número) e mostre sua condição de acordo com a tabela abaixo.<br><br>
+
+        IMC em adultos Condição<br><br>
+
+        Abaixo de 18,5 Abaixo do peso <br>
+
+        Entre 18,5 e 25 Peso normal <br>
+
+        Entre 25 e 30 Acima do peso <br>
+
+        Acima de 30 obeso <br><br>
+
+        Ao final, mostre como saída os seguintes dados de cada pessoa:
+
+        Nome;
+        Peso;
+        Condição 
+    </p>
+
+    <form id="pessoaForm">
+        <label for="numPessoas">Digite o numero de Pessoas: </label><br>
+        <input type="number" id="numPessoas" required><br>
+        <button type="button" onclick="cadastroPessoas()">Iniciar Cadastro</button>
+    </form>
+
+    <div id="cadastroIMC" style="display: none;">
+        <h2>IMC</h2>
+        <div id="pessoaImcContainer"></div>
+        <button onclick="calcularIMC()">Calcular IMC</button>
+    </div>
+
+    <div id="resultado" style="display: none;">
+        <h2>Resultados</h2>
+        <p id="resultadoTexto"></p>
+    </div>
+
+    <h2>
+        <a href="../index.html">VOLTAR PARA AS QUESTÕES</a>
+    </h2>
+
+    <script src="02.js"></script>
+</body>
+</html>
