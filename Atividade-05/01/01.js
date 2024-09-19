@@ -77,13 +77,15 @@ function calcularPesoIdeal(){
         pessoas.push({
             nome,
             sexo,
-            pesoIdeal: pesoIdeal.toFixed(1)
+            pesoIdeal: pesoIdeal
         });
+    }
 
+    for(let j = 0; j < numPessoas; j++){
         resultadoTexto.innerHTML += `
-            Pessoa: ${nome}<br>
-            Sexo: ${sexo}<br>
-            Peso Ideal: ${pesoIdeal.toFixed(1)}<br><br>
+            Pessoa: ${pessoas[j].nome}<br>
+            Sexo: ${pessoas[j].sexo}<br>
+            Peso Ideal: ${pessoas[j].pesoIdeal.toFixed(1)}<br><br>
         `;
     }
 
