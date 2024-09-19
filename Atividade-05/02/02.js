@@ -100,13 +100,16 @@ function calcularIMC(){
             condicao: condicao
         });
 
-
-        resultadoTexto.innerHTML += `
-            Pessoa: ${nome}<br>
-            Peso: ${peso}<br>
-            Condição: ${condicao}<br><br>
-        `;
     }
+
+    for(let j = 0; j < numPessoas; j++){
+        resultadoTexto.innerHTML += `
+            Pessoa: ${pessoas[j].nome}<br>
+            Peso: ${pessoas[j].peso}<br>
+            Condição: ${pessoas[j].condicao}<br><br>
+    `;
+    }
+
     document.getElementById("resultado").style.display = 'block';
     
 }
