@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 01</title>
+</head>
+<body>
+    <h1>Questão 01</h1>
+
+    <p>
+        Tendo como dados de entrada a altura e o sexo de uma pessoa, construa um algoritmo que calcule seu peso ideal de um número determinado de pessoas (usuário deve definir esse número), utilizando as seguintes fórmulas:<br>
+
+        ● para homens: (72.7 * h) – 58;<br>
+        ● para mulheres: (62.1 * h) – 44.7.<br> 
+
+        Ao final, mostre como saída os seguintes dados de cada pessoa:
+        Nome;
+        Sexo;
+        Peso Ideal;
+    </p>
+
+    <form id="PessoaForm">
+
+        <label for="numPessoas">Digite a quantidade de pessoas: </label><br>
+        <input type="number" id="numPessoas" required><br>
+
+        <button type="button" onclick="iniciarCadastro()">Iniciar Cadastro</button>
+
+    </form>
+
+    <div id="cadastroPesoIdeal" style="display: none;">
+        <h2>Peso Ideal</h2>
+        <div id="pessoaPesoIdealContainer"></div>
+        <button onclick="calcularPesoIdeal()">Calcular Peso Ideal</button>
+    </div>
+
+    <div id="resultado" style="display: none;">
+        <h2>Resultados</h2>
+        <p id="resultadoTexto"></p>
+    </div>
+
+    <h2>
+        <a href="../index.html">VOLTAR PARA AS QUESTÕES</a>
+    </h2>
+
+    <script src="01.js"></script>
+</body>
+</html>
