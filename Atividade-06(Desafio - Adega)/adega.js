@@ -63,7 +63,7 @@ function listarVinhos(){
 
     for(let i = 0; i< vinhos.length; i++){
         listarVinhosContainer.innerHTML += `
-            <ul><li>${vinhos[i]}</li></ul>
+            ${i+1}. ${vinhos[i]}<br>
         `;
     }
 
