@@ -27,23 +27,24 @@ function inserirVinhosMenu(){
 
 function armazenarVinhos(){
     const vinhoInput = document.getElementById("vinhoInput").value.toUpperCase();
+   
 
     switch(true){
         case(vinhoInput == 'T'):
             vinhos.push('Tinto');
-            console.log(vinhos);
+            listarVinhos();
             alert(`Vinho ${vinhoInput} adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'B'):
             vinhos.push('Branco');
-            console.log(vinhos);
+            listarVinhos();
             alert(`Vinho ${vinhoInput} adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'R'):
             vinhos.push('Rosé');
-            console.log(vinhos);
+            listarVinhos();
             alert(`Vinho ${vinhoInput} adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
@@ -54,19 +55,45 @@ function armazenarVinhos(){
             alert('Opção Inválida! Use "T" para tinto, "B" para branco e "R" para rosé. Se deseja finalizar, Digite "F".');
     }
 
-    /* 
-    if(vinhoInput == 'T' || vinhoInput == 'B' || vinhoInput == 'R'){
-        vinhos.push(vinhoInput);
-        console.log(vinhos);
-        alert(`Vinho ${vinhoInput} adicionado.`)
-        document.getElementById('vinhoInput').value = '';
-    }else if(vinhoInput == 'F'){
-        finalizarInsercao();
-    }else{
-        alert('Opção Inválida! Use "T" para tinto, "B" para branco e "R" para rosé. ')
-    }
-*/
+}
 
+function listarVinhos(){
+    const listarVinhosContainer = document.getElementById("listarVinhosContainer");
+    listarVinhosContainer.innerHTML = '';
+
+    for(let i = 0; i< vinhos.length; i++){
+        listarVinhosContainer.innerHTML += `
+            <ul><li>${vinhos[i]}</li></ul>
+        `;
+    }
+
+    document.getElementById("listarVinhos").style.display = 'block';
+    contarVinhos();
+}
+
+function contarVinhos(){
+    const contarVinhosContainer = document.getElementById("contarVinhosContainer");
+    contarVinhosContainer.innerHTML = '';
+
+    let vinhoTinto = 0;
+    let vinhoRose = 0;
+    let vinhoBranco = 0;
+
+    for(let i = 0; i< vinhos.length; i++){
+        if(vinhos[i] == 'Tinto'){
+            vinhoTinto++;
+        }else if(vinhos[i] == 'Rosé'){
+            vinhoRose++;
+        }else{
+            vinhoBranco++
+        }
+    }
+
+    contarVinhosContainer.innerHTML += `
+    <p>Tinto: ${vinhoTinto}<br> Branco:${vinhoBranco}<br> Rosé:${vinhoRose}</p>
+    `;
+
+    document.getElementById("contarVinhos").style.display = 'block';
 }
 
 function finalizarInsercao(){
