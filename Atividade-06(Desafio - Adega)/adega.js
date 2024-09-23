@@ -33,19 +33,19 @@ function armazenarVinhos(){
         case(vinhoInput == 'T'):
             vinhos.push('Tinto');
             listarVinhos();
-            alert(`Vinho ${vinhoInput} adicionado.`)
+            alert(`Vinho Tinto adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'B'):
             vinhos.push('Branco');
             listarVinhos();
-            alert(`Vinho ${vinhoInput} adicionado.`)
+            alert(`Vinho Branco adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'R'):
             vinhos.push('Rosé');
             listarVinhos();
-            alert(`Vinho ${vinhoInput} adicionado.`)
+            alert(`Vinho Rosé adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'F'):
