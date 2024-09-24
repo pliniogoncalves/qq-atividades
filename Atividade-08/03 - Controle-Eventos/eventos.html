@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participação de Eventos</title>
+</head>
+<body>
+    <h1> Controle de Participação em Eventos  </h1>
+
+    <p>
+        Construa uma solução em HTML e JavaScript que permita registrar as participações em eventos 
+        de uma empresa. Os tipos de eventos são: 'S' para seminários, 'W' para workshops e 'C' para 
+        conferências. A aplicação deve: <br>
+        <ul>
+            <li>Aceitar entradas dos tipos de eventos.</li>
+            <li>Armazenar cada entrada em um array.</li>
+            <li>Exibir a lista atualizada de eventos e o total de cada tipo após cada entrada.</li>
+            <li>Calcular e exibir a porcentagem de cada tipo de evento sobre o total de eventos inseridos.</li>
+            <li>Permitir alterar o tipo de evento armazenado em uma determinada posição do array.</li>
+            <li>Finalizar a inserção de dados quando o usuário digitar 'F'.</li>
+        </ul> 
+    </p>
+
+    <div id="cadastroEventos" style="display: block;">
+        <h2>Cadastrar Eventos</h2>
+        <label for="novoEvento">Digite 'S' para seminários, 'W' para workshops e 'C' para conferências:</label> <br>
+        <input type="text" id="novoEvento">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div id="listarEventos" style="display: block;">
+        <h2>Lista de Eventos</h2>
+        <div id="listarEventosContainer"></div>
+    </div>
+
+    <div id="contarEventos" style="display: block;">
+        <h2>Contagem de Eventos</h2>
+        <div id="contarEventosContainer"></div>
+    </div>
+
+    <div id="porcentagemEventos" style="display: block;">
+        <h2>Porcentagem de Eventos</h2>
+        <div id="porcentagemEventosContainer"></div>
+    </div>
+
+    <div id="alterarEventos" style="display: block;">
+        <h2>Alterar Eventos</h2>
+        <label for="eventoSubstituto">Digite 'S' para seminários, 'W' para workshops e 'C' para conferências:</label>
+        <input type="text" id="eventoSubstituto"> <br>
+        <label for="posicaoEvento">Digite a Posição do Evento na lista:</label>
+        <input type="number" id="posicaoEvento"> <br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+
+    <script src="eventos.js"></script>
+</body>
+</html>
