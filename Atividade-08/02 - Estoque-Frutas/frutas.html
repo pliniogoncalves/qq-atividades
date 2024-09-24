@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de Frutas</title>
+</head>
+<body>
+    <h1> Gerenciamento de Estoque de Frutas </h1>
+
+    <p>
+        Construa uma solução em HTML e JavaScript que permita fazer um levantamento do estoque de 
+        frutas em um supermercado. As frutas são: 'M' para maçã, 'B' para banana e 'L' para laranja. A 
+        aplicação deve: <br>
+        <ul>
+            <li>Aceitar entradas das frutas disponíveis.</li>
+            <li>Armazenar cada entrada em um array.</li>
+            <li>Exibir a lista atualizada de frutas e o total de cada tipo após cada entrada</li>
+            <li>Calcular e exibir a porcentagem de cada fruta sobre o total de frutas inseridas.</li>
+            <li>Permitir alterar a fruta armazenada em uma determinada posição do array.</li>
+            <li>Finalizar a inserção de dados quando o usuário digitar 'F'.</li>
+        </ul> 
+    </p>
+
+    <div id="cadastroFrutas" style="display: block;">
+        <h2>Cadastrar Frutas</h2>
+        <label for="novaFruta">Digite 'M' para maçã, 'B' para banana e 'L' para laranja:</label> <br>
+        <input type="text" id="novaFruta">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div id="listarFrutas" style="display: block;">
+        <h2>Lista de Frutas</h2>
+        <div id="listarFrutasContainer"></div>
+    </div>
+
+    <div id="contarFrutas" style="display: block;">
+        <h2>Contagem de Frutas</h2>
+        <div id="contarFrutasContainer"></div>
+    </div>
+
+    <div id="porcentagemFrutas" style="display: block;">
+        <h2>Porcentagem de Frutas</h2>
+        <div id="porcentagemFrutasContainer"></div>
+    </div>
+
+    <div id="alterarFrutas" style="display: block;">
+        <h2>Alterar Frutas</h2>
+        <label for="frutaSubstituta">Digite 'M' para maçã, 'B' para banana e 'L' para laranja:</label>
+        <input type="text" id="frutaSubstituta"> <br>
+        <label for="posicaoFruta">Digite a Posição da Fruta na lista:</label>
+        <input type="number" id="posicaoFruta"> <br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+
+    <script src="frutas.js"></script>
+</body>
+</html>
