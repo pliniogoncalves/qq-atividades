@@ -15,7 +15,7 @@ let vinhoRose = 0;
 let vinhoBranco = 0;
 
 function inserirVinhosMenu(){
-    vinhos = [];
+    document.getElementById("alterarPosicaoVinhos").style.display = 'none';
 
     const inserirVinhosContainer = document.getElementById("inserirVinhosContainer");
     inserirVinhosContainer.innerHTML = '';
@@ -37,6 +37,7 @@ function armazenarVinhos(){
             vinhos.push('Tinto');
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Tinto adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
@@ -44,6 +45,7 @@ function armazenarVinhos(){
             vinhos.push('Branco');
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Branco adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
@@ -51,6 +53,7 @@ function armazenarVinhos(){
             vinhos.push('Rosé');
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Rosé adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
@@ -105,13 +108,7 @@ function contarVinhos(){
     document.getElementById("contarVinhos").style.display = 'block';
 }
 
-function finalizarInsercao(){
-    alert('Inserção de vinhos finalizada!');
-    document.getElementById("inserirVinhos").style.display = 'none';
-    console.log(vinhos);
-}
-
-function calcularPorcentagemMenu(){
+function calcularPorcentagem(){
     const porcentagemVinhosContainer = document.getElementById("porcentagemVinhosContainer");
     porcentagemVinhosContainer.innerHTML = '';
 
@@ -131,11 +128,11 @@ function calcularPorcentagemMenu(){
 
 }
 
-function alterarVinhoMenu(){
+function alterarVinhosMenu(){
+    document.getElementById("inserirVinhos").style.display = 'none';
+
     const alterarPosicaoVinhosContainer = document.getElementById("alterarPosicaoVinhosContainer");
     alterarPosicaoVinhosContainer.innerHTML = '';
-
-    listarVinhos();
 
     alterarPosicaoVinhosContainer.innerHTML += `
         <label for="posicaoVinho">Digite o número do Vinho que deseja alterar: </label>
@@ -158,6 +155,7 @@ function alterarVinho(){
             vinhos[posicaoVinho-1] = 'Tinto';
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Tinto adicionado na posição ${posicaoVinho}.`)
             document.getElementById('novoVinho').value = '';
             break;
@@ -165,6 +163,7 @@ function alterarVinho(){
             vinhos[posicaoVinho-1] = 'Branco';
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Branco adicionado na posição ${posicaoVinho}.`)
             document.getElementById('novoVinho').value = '';
             break;
@@ -172,10 +171,11 @@ function alterarVinho(){
             vinhos[posicaoVinho-1] = 'Rosé';
             listarVinhos();
             contarVinhos();
+            calcularPorcentagem();
             alert(`Vinho Rosé adicionado na posição ${posicaoVinho}.`)
             document.getElementById('novoVinho').value = '';
             break;
-        case(vinhoInput == 'F'):
+        case(novoVinho == 'F'):
             finalizarInsercao();
             break;
         default:
@@ -185,5 +185,12 @@ function alterarVinho(){
         alert('Opção Inválida! Insira uma posição existente.');
         console.log(vinhos.length);
     }
+}
+
+function finalizarInsercao(){
+    alert('Inserção de vinhos finalizada!');
+    document.getElementById("inserirVinhos").style.display = 'none';
+    document.getElementById("alterarPosicaoVinhos").style.display = 'none';
+    console.log(vinhos);
 }
 

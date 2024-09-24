@@ -21,13 +21,17 @@
 
     <h2>Adega</h2>
     <button onclick="inserirVinhosMenu()">Inserir Vinhos</button>
-    <button onclick="calcularPorcentagemMenu()">Calcular Porcentagem</button>
-    <button  onclick="alterarVinhoMenu()">Alterar Vinho</button>
+    <button  onclick="alterarVinhosMenu()">Alterar Vinho</button>
 
     <div id="inserirVinhos" style="display: none;"> 
         <h3>Inserir Vinhos</h3>
         <div id="inserirVinhosContainer"></div><br>
         <button onclick="armazenarVinhos()">Inserir Vinhos</button>
+    </div>
+
+    <div id="alterarPosicaoVinhos" style="display: none;">
+        <h3>Alterar Tipo de Vinho na Lista</h3>
+        <div id="alterarPosicaoVinhosContainer"></div>
     </div>
 
     <div id="listarVinhos" style="display: none;">
@@ -45,11 +49,6 @@
         <div id="porcentagemVinhosContainer"></div>
     </div>
 
-    <div id="alterarPosicaoVinhos" style="display: none;">
-        <h3>Alterar Tipo de Vinho na Lista</h3>
-        <div id="alterarPosicaoVinhosContainer"></div>
-    </div>
-    
     <script src="adega.js"></script>
 
 </body>
