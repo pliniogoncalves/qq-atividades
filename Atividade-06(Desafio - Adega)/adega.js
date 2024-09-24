@@ -10,6 +10,9 @@ Finalizar a inserção de dados quando o usuário digitar 'F'.
 */
 
 let vinhos=[];
+let vinhoTinto = 0;
+let vinhoRose = 0;
+let vinhoBranco = 0;
 
 function inserirVinhosMenu(){
     vinhos = [];
@@ -33,18 +36,21 @@ function armazenarVinhos(){
         case(vinhoInput == 'T'):
             vinhos.push('Tinto');
             listarVinhos();
+            contarVinhos();
             alert(`Vinho Tinto adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'B'):
             vinhos.push('Branco');
             listarVinhos();
+            contarVinhos();
             alert(`Vinho Branco adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
         case(vinhoInput == 'R'):
             vinhos.push('Rosé');
             listarVinhos();
+            contarVinhos();
             alert(`Vinho Rosé adicionado.`)
             document.getElementById('vinhoInput').value = '';
             break;
@@ -68,16 +74,15 @@ function listarVinhos(){
     }
 
     document.getElementById("listarVinhos").style.display = 'block';
-    contarVinhos();
 }
 
 function contarVinhos(){
     const contarVinhosContainer = document.getElementById("contarVinhosContainer");
     contarVinhosContainer.innerHTML = '';
 
-    let vinhoTinto = 0;
-    let vinhoRose = 0;
-    let vinhoBranco = 0;
+    vinhoTinto = 0;
+    vinhoRose = 0;
+    vinhoBranco = 0;
 
     for(let i = 0; i< vinhos.length; i++){
         if(vinhos[i] == 'Tinto'){
@@ -90,7 +95,11 @@ function contarVinhos(){
     }
 
     contarVinhosContainer.innerHTML += `
-    <p>Tinto: ${vinhoTinto}<br> Branco:${vinhoBranco}<br> Rosé:${vinhoRose}</p>
+    <p>
+        Tinto: ${vinhoTinto} <br>
+        Branco:${vinhoBranco} <br>
+        Rosé:${vinhoRose}
+    </p>
     `;
 
     document.getElementById("contarVinhos").style.display = 'block';
@@ -100,5 +109,81 @@ function finalizarInsercao(){
     alert('Inserção de vinhos finalizada!');
     document.getElementById("inserirVinhos").style.display = 'none';
     console.log(vinhos);
+}
+
+function calcularPorcentagemMenu(){
+    const porcentagemVinhosContainer = document.getElementById("porcentagemVinhosContainer");
+    porcentagemVinhosContainer.innerHTML = '';
+
+    let porcentagemTinto = (vinhoTinto * 100) / vinhos.length;
+    let porcentagemBranco = (vinhoBranco *100) / vinhos.length;
+    let porncentagemRose = (vinhoRose *100) / vinhos.length;
+
+    porcentagemVinhosContainer.innerHTML += `
+    <p>
+        Tinto: ${porcentagemTinto}% <br>
+        Branco: ${porcentagemBranco}% <br>
+        Rosé: ${porncentagemRose}%
+    </p>
+    `;
+
+    document.getElementById("porcentagemVinhos").style.display = 'block';
+
+}
+
+function alterarVinhoMenu(){
+    const alterarPosicaoVinhosContainer = document.getElementById("alterarPosicaoVinhosContainer");
+    alterarPosicaoVinhosContainer.innerHTML = '';
+
+    listarVinhos();
+
+    alterarPosicaoVinhosContainer.innerHTML += `
+        <label for="posicaoVinho">Digite o número do Vinho que deseja alterar: </label>
+        <input type="number" id="posicaoVinho" required> <br>
+        <label for"novoVinho">Digite por qual Vinho deseja substituir('T' para Tinto, 'B' para Branco e 'R' para Rosé). Se deseja finalizar, Digite "F": </label>
+        <input type="text" id="novoVinho" required> <br>
+        <button type="button" onclick="alterarVinho()">Alterar</button>
+    `;
+    
+    document.getElementById("alterarPosicaoVinhos").style.display = 'block';
+}
+
+function alterarVinho(){
+    const posicaoVinho = document.getElementById("posicaoVinho").value;
+    const novoVinho = document.getElementById("novoVinho").value.toUpperCase();
+
+    if(!isNaN(posicaoVinho) && posicaoVinho >= 1 && posicaoVinho <= vinhos.length){
+        switch(true){
+            case(novoVinho == 'T'):
+            vinhos[posicaoVinho-1] = 'Tinto';
+            listarVinhos();
+            contarVinhos();
+            alert(`Vinho Tinto adicionado na posição ${posicaoVinho}.`)
+            document.getElementById('novoVinho').value = '';
+            break;
+        case(novoVinho == 'B'):
+            vinhos[posicaoVinho-1] = 'Branco';
+            listarVinhos();
+            contarVinhos();
+            alert(`Vinho Branco adicionado na posição ${posicaoVinho}.`)
+            document.getElementById('novoVinho').value = '';
+            break;
+        case(novoVinho == 'R'):
+            vinhos[posicaoVinho-1] = 'Rosé';
+            listarVinhos();
+            contarVinhos();
+            alert(`Vinho Rosé adicionado na posição ${posicaoVinho}.`)
+            document.getElementById('novoVinho').value = '';
+            break;
+        case(vinhoInput == 'F'):
+            finalizarInsercao();
+            break;
+        default:
+            alert('Opção Inválida! Use "T" para tinto, "B" para branco e "R" para rosé. Se deseja finalizar, Digite "F".');
+        }
+    }else{
+        alert('Opção Inválida! Insira uma posição existente.');
+        console.log(vinhos.length);
+    }
 }
 
