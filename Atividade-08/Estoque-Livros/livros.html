@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros-Estoque</title>
+</head>
+<body>
+    <h1>Sistema de Controle de Estoque de Livros</h1>
+
+    <p>
+        Construa uma solução em HTML e JavaScript que permita controlar o estoque de uma livraria.
+        Os gêneros de livros são: 'F' para ficção, 'NF' para não-ficção e 'T' para técnico. A aplicação deve: <br>
+        <ul>
+            <li>Aceitar entradas dos gêneros de livros.</li>
+            <li>Armazenar cada entrada em um array.</li>
+            <li>Exibir a lista atualizada de gêneros e o total de cada tipo de livro após cada entrada.</li>
+            <li>Calcular e exibir a porcentagem de cada gênero sobre o total de livros inseridos.</li>
+            <li>Permitir alterar o gênero de um livro em uma determinada posição do array.</li>
+            <li>Finalizar a inserção de dados quando o usuário digitar 'F'</li>
+        </ul> 
+    </p>
+
+    <div id="cadastroLivros" style="display: block;">
+        <h2>Cadastrar Livros</h2>
+        <label for="novoLivro">Digite 'F' para ficção, 'NF' para não-ficção e 'T' para técnico:</label> <br>
+        <input type="text" id="novoLivro">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div id="listarLivros" style="display: block;">
+        <h2>Lista de Livros</h2>
+        <div id="listarLivrosContainer"></div>
+    </div>
+
+    <div id="contarLivros" style="display: block;">
+        <h2>Contagem de Livros</h2>
+        <div id="contarLivrosContainer"></div>
+    </div>
+
+    <div id="porcentagemLivros" style="display: block;">
+        <h2>Porcentagem de Livros</h2>
+        <div id="porcentagemLivrosContainer"></div>
+    </div>
+
+    <div id="alterarLivros" style="display: block;">
+        <h2>Alterar Livros</h2>
+        <label for="livroSubstituto">Digite 'F' para ficção, 'NF' para não-ficção e 'T' para técnico:</label>
+        <input type="text" id="livroSubstituto"> <br>
+        <label for="posicaoLivro">Digite a Posição do livro na lista:</label>
+        <input type="number" id="posicaoLivro"> <br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+
+    <script src="livros.js"></script>
+</body>
+</html>
