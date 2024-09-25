@@ -10,95 +10,95 @@ televisores e 'N' para notebooks. A aplicação deve:
 . Finalizar a inserção de dados quando o usuário digitar 'F'.
 */
 
-let eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
 
 listar();
 contar();
 calcularPorcentagem();
 
 function cadastrar(){
-    const novoEvento = document.getElementById('novoEvento').value.toUpperCase();
-    if(novoEvento == 'S' || novoEvento == 'W' || novoEvento == 'C'){
-        eventos.push(novoEvento);
-        localStorage.setItem('eventos', JSON.stringify(eventos));
-        alert(`${novoEvento} adicionado com sucesso!`);
-    }else if(novoEvento == 'F'){
-        document.getElementById('cadastroEventos').style.display = 'none';
-        document.getElementById('alterarEventos').style.display = 'none';
+    const novoProduto = document.getElementById('novoProduto').value.toUpperCase();
+    if(novoProduto == 'C' || novoProduto == 'T' || novoProduto == 'N'){
+        produtos.push(novoProduto);
+        localStorage.setItem('produtos', JSON.stringify(produtos));
+        alert(`${novoProduto} adicionado com sucesso!`);
+    }else if(novoProduto == 'F'){
+        document.getElementById('cadastroProdutos').style.display = 'none';
+        document.getElementById('alterarProdutos').style.display = 'none';
     }else{
-        alert(`${novoEvento} é uma entrada inválida!`)
+        alert(`${novoProduto} é uma entrada inválida!`)
     }
 
     listar();
     contar();
     calcularPorcentagem();
 
-    document.getElementById('novoEvento').value = '';
+    document.getElementById('novoProduto').value = '';
 }
 
 function listar(){
-    const listarEventosContainer = document.getElementById('listarEventosContainer');
-    listarEventosContainer.innerHTML = '';
+    const listarProdutosContainer = document.getElementById('listarProdutosContainer');
+    listarProdutosContainer.innerHTML = '';
 
-    eventos.forEach((evento, index) => {
-        listarEventosContainer.innerHTML += `
-            ${index + 1}. ${evento} <br>
+    produtos.forEach((produto, index) => {
+        listarProdutosContainer.innerHTML += `
+            ${index + 1}. ${produto} <br>
         `;
     });
 }
 
 function contar() {
-    const contarEventosContainer = document.getElementById('contarEventosContainer');
-    contarEventosContainer.innerHTML = '';
+    const contarProdutosContainer = document.getElementById('contarProdutosContainer');
+    contarProdutosContainer.innerHTML = '';
 
-    const contagem = eventos.reduce((contador, evento) => {
-        contador[evento] = (contador[evento] || 0) + 1;
+    const contagem = produtos.reduce((contador, produto) => {
+        contador[produto] = (contador[produto] || 0) + 1;
         return contador;
     }, {});
 
-    for (const [evento, quantidade] of Object.entries(contagem)) {
-        contarEventosContainer.innerHTML += `${evento}: ${quantidade} <br>`;
+    for (const [produto, quantidade] of Object.entries(contagem)) {
+        contarProdutosContainer.innerHTML += `${produto}: ${quantidade} <br>`;
     }
 
     return contagem;
 }
 
 function calcularPorcentagem(){
-    const porcentagemEventosContainer = document.getElementById('porcentagemEventosContainer');
-    porcentagemEventosContainer.innerHTML = '';
+    const porcentagemProdutosContainer = document.getElementById('porcentagemProdutosContainer');
+    porcentagemProdutosContainer.innerHTML = '';
 
     const contagem = contar();
 
-    for(const [evento, quantidade] of Object.entries(contagem)){
-        const porcentagem = (quantidade * 100) / eventos.length;
-        porcentagemEventosContainer.innerHTML += `
-            ${evento}: ${porcentagem.toFixed(2)}% <br>
+    for(const [produto, quantidade] of Object.entries(contagem)){
+        const porcentagem = (quantidade * 100) / produtos.length;
+        porcentagemProdutosContainer.innerHTML += `
+            ${produto}: ${porcentagem.toFixed(2)}% <br>
         `;
     }
 }
 
 function alterar(){
-    const posicaoEvento = document.getElementById("posicaoEvento").value;
-    const eventoSubstituto = document.getElementById("eventoSubstituto").value.toUpperCase();
+    const posicaoProduto = document.getElementById("posicaoProduto").value;
+    const produtoSubstituto = document.getElementById("produtoSubstituto").value.toUpperCase();
 
-    if(!isNaN(posicaoEvento) && posicaoEvento >= 1 && posicaoEvento <= eventos.length){
-        if(eventoSubstituto == 'S' || eventoSubstituto == 'W' || eventoSubstituto == 'C'){
-            eventos[posicaoEvento-1] = eventoSubstituto;
-            localStorage.setItem('eventos', JSON.stringify(eventos));
-            alert(`${eventoSubstituto} adicionado com sucesso!`);
-        }else if(eventoSubstituto == 'F'){
-            document.getElementById('cadastroEventos').style.display = 'none';
-            document.getElementById('alterarEventos').style.display = 'none';
+    if(!isNaN(posicaoProduto) && posicaoProduto >= 1 && posicaoProduto <= produtos.length){
+        if(produtoSubstituto == 'C' || produtoSubstituto == 'T' || produtoSubstituto == 'N'){
+            produtos[posicaoProduto-1] = produtoSubstituto;
+            localStorage.setItem('produtos', JSON.stringify(produtos));
+            alert(`${produtoSubstituto} adicionado com sucesso!`);
+        }else if(produtoSubstituto == 'F'){
+            document.getElementById('cadastroProdutos').style.display = 'none';
+            document.getElementById('alterarProdutos').style.display = 'none';
         }else{
-            alert(`${eventoSubstituto} é uma entrada inválida!`)
+            alert(`${produtoSubstituto} é uma entrada inválida!`)
         }
     }else{
-        alert(`${posicaoEvento} é uma entrada inválida!`)
+        alert(`${posicaoProduto} é uma entrada inválida!`)
     }
 
     listar();
     contar();
     calcularPorcentagem();
 
-    document.getElementById('eventoSubstituto').value = '';
+    document.getElementById('produtoSubstituto').value = '';
 }
