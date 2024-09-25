@@ -69,14 +69,14 @@ function listarCliente(){
     })
 }
 
-function editarCliente(){
+function formEditarCliente(){
     document.getElementById('adicionarDados').style.display = 'none';
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'block';
     document.getElementById('removerDados').style.display = 'none';
 }
 
-function removerCliente(){
+function formRemoverCliente(){
     document.getElementById('adicionarDados').style.display = 'none';
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'none';

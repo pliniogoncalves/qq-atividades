@@ -68,19 +68,19 @@ function editar(){
 
     switch(true){
         case(opcaoEditar === 'Cliente'):
-            editarCliente();
+            formEditarCliente();
             break;
         case(opcaoEditar === 'Categoria'):
-            editarCategoria();
+            formEditarCategoria();
             break;
         case(opcaoEditar === 'Produto'):
-            editarProduto();
+            formEditarProduto();
             break;
         case(opcaoEditar === 'Vendedor'):
-            editarVendedor();
+            formEditarVendedor();
             break;
         case(opcaoEditar === 'Pedido'):
-            editarPedido();
+            formEditarPedido();
             break;
     }
 }
@@ -97,19 +97,19 @@ function remover(){
 
     switch(true){
         case(opcaoRemover === 'Cliente'):
-            removerCliente();
+            formRemoverCliente();
             break;
         case(opcaoRemover === 'Categoria'):
-            removerCategoria();
+            formRemoverCategoria();
             break;
         case(opcaoRemover === 'Produto'):
-            removerProduto();
+            formRemoverProduto();
             break;
         case(opcaoRemover === 'Vendedor'):
-            removerVendedor();
+            formRemoverVendedor();
             break;
         case(opcaoRemover === 'Pedido'):
-            removerPedido();
+            formRemoverPedido();
             break;
     }
 }
