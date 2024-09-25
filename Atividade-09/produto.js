@@ -1,11 +1,11 @@
 let produtos = [];
 
-function adicionarProduto(){
-    const adicionarDadosContainer = document.getElementById('adicionarDadosContainer');
-        adicionarDadosContainer.innerHTML = '';
+function formCadastrarProduto(){
+    const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
+        cadastrarDadosContainer.innerHTML = '';
 
-        adicionarDadosContainer.innerHTML += `
-            <h3>Adicionar produto</h3>
+        cadastrarDadosContainer.innerHTML += `
+            <h3>Cadastrar Produto</h3>
             <h2>teste</h2>
         `;
 }

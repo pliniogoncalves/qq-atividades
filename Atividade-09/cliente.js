@@ -1,13 +1,21 @@
 let clientes = [];
 
-function adicionarCliente(){
+function formCadastrarCliente(){
   
-        const adicionarDadosContainer = document.getElementById('adicionarDadosContainer');
-        adicionarDadosContainer.innerHTML = '';
+        const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
+        cadastrarDadosContainer.innerHTML = '';
 
-        adicionarDadosContainer.innerHTML += `
-            <h3>Adicionar Cliente</h3>
-            <h2>teste</h2>
+        cadastrarDadosContainer.innerHTML += `
+            <h3>Cadastrar Cliente</h3>
+            
+            <form id="clienteForm">
+
+                <label for="nomeCliente">Nome: </label><br>
+                <input type="text" id="nomeCliente" required><br>
+
+                <button type="button" onclick="iniciarCadastro()">Iniciar Cadastro</button>
+
+            </form>
         `;
 }
 
