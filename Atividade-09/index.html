@@ -45,16 +45,36 @@
 
     <div id="editarDados" style="display: none;">
         <h2>Editar Dados</h2>
+
+        <select id="opcaoEditar" onchange="editar()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Produto">Produto</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Pedido">Pedido</option>
+        </select>
+
         <div id="editarDadosContainer" style="display: block;"></div>
     </div>
 
     <div id="removerDados" style="display: none;">
         <h2>Remover Dados</h2>
+
+        <select id="opcaoRemover" onchange="remover()">
+        <option value="">Escolha</option>
+        <option value="Cliente">Cliente</option>
+        <option value="Categoria">Categoria</option>
+        <option value="Produto">Produto</option>
+        <option value="Vendedor">Vendedor</option>
+        <option value="Pedido">Pedido</option>
+    </select>
+
         <div id="removerDadosContainer" style="display: block;"></div>
     </div>
 
     <script src="main.js"></script>
     <script src="cliente.js"></script>
-    <script src="produto.js"></script>
+
 </body>
 </html>

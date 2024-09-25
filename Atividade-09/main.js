@@ -61,6 +61,28 @@ function editar(){
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'block';
     document.getElementById('removerDados').style.display = 'none';
+
+    const opcaoEditar = document.getElementById('opcaoEditar').value;
+    const editarDadosContainer = document.getElementById('editarDadosContainer');
+    editarDadosContainer.innerHTML = '';
+
+    switch(true){
+        case(opcaoEditar === 'Cliente'):
+            editarCliente();
+            break;
+        case(opcaoEditar === 'Categoria'):
+            editarCategoria();
+            break;
+        case(opcaoEditar === 'Produto'):
+            editarProduto();
+            break;
+        case(opcaoEditar === 'Vendedor'):
+            editarVendedor();
+            break;
+        case(opcaoEditar === 'Pedido'):
+            editarPedido();
+            break;
+    }
 }
 
 function remover(){
@@ -68,4 +90,26 @@ function remover(){
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'none';
     document.getElementById('removerDados').style.display = 'block';
+
+    const opcaoRemover = document.getElementById('opcaoRemover').value;
+    const removerDadosContainer = document.getElementById('removerDadosContainer');
+    removerDadosContainer.innerHTML = '';
+
+    switch(true){
+        case(opcaoRemover === 'Cliente'):
+            removerCliente();
+            break;
+        case(opcaoRemover === 'Categoria'):
+            removerCategoria();
+            break;
+        case(opcaoRemover === 'Produto'):
+            removerProduto();
+            break;
+        case(opcaoRemover === 'Vendedor'):
+            removerVendedor();
+            break;
+        case(opcaoRemover === 'Pedido'):
+            removerPedido();
+            break;
+    }
 }
