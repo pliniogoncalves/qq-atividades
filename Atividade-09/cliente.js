@@ -8,7 +8,7 @@ function formCadastrarCliente(){
         cadastrarDadosContainer.innerHTML += `
             <h3>Cadastrar Cliente</h3>
             
-            <form id="clienteForm">
+            <form id="clienteFormCadastrar">
 
                 <label for="nomeCliente">Nome: </label>
                 <input type="text" id="nomeCliente" required><br><br>
@@ -44,7 +44,7 @@ function cadastrarCliente(){
     const cliente = {nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente};
     clientes.push(cliente);
 
-    document.getElementById('clienteForm').reset();
+    document.getElementById('clienteFormCadastrar').reset();
 
     console.log(clientes);
 
@@ -57,28 +57,93 @@ function listarCliente(){
 
     clientes.forEach((cliente, index) => {
         listarDadosContainer.innerHTML += `
-            <h3>
-                Cliente ${index + 1} <br>
+            <h3>Listar Clientes</h3>
+
+            <h4>
+                Cliente ID ${index + 1} <br>
                 Nome: ${cliente.nomeCliente} <br>
                 Data de Nascimento: ${cliente.dataCliente} <br>
                 CPF: ${cliente.cpfCliente} <br>
                 Origem: ${cliente.origemCliente} <br>
                 Score: ${cliente.scoreCliente} <br>
-            </h3>
+            </h4>
         `;
     })
 }
 
 function formEditarCliente(){
-    document.getElementById('adicionarDados').style.display = 'none';
-    document.getElementById('listarDados').style.display = 'none';
-    document.getElementById('editarDados').style.display = 'block';
-    document.getElementById('removerDados').style.display = 'none';
+
+    const editarDadosContainer = document.getElementById('editarDadosContainer');
+    editarDadosContainer.innerHTML = '';
+
+    editarDadosContainer.innerHTML += `
+         <h3>Editar Clientes</h3>
+
+        <form id="clienteFormEditar">
+
+                <label for="indexClienteEditar">Digite o ID do cliente: </label>
+                <input type="number" id="indexClienteEditar"><br>
+
+                <label for="nomeClienteEditar">Nome: </label>
+                <input type="text" id="nomeClienteEditar" required><br><br>
+
+                <label for="dataClienteEditar">Data de Nascimento: </label>
+                <input type="date" id="dataClienteEditar" required><br><br>
+
+                <label for="cpfClienteEditar">CPF: </label>
+                <input type="text" id="cpfClienteEditar" required><br><br>
+
+                <label>Origem:</label>
+                <input type="radio" id="clienteOrigemLojaEditar" name="origem" value="loja" required>
+                <label for="clienteOrigemLojaEditar">Loja</label>
+                <input type="radio" id="clienteOrigemSiteEditar" name="origem" value="site">
+                <label for="clienteOrigemSiteEditar">Site</label><br><br>
+
+                <label for="scoreClienteEditar">Score: </label>
+                <input type="number" id="scoreClienteEditar" required><br><br>
+
+                <button type="button" onclick="editarCliente()">Editar</button>
+
+        </form>
+    `;
+}
+
+function editarCliente(){
+    const indexCliente = document.getElementById('indexClienteEditar').value;
+    const nomeCliente = document.getElementById('nomeClienteEditar').value;
+    const dataCliente = document.getElementById('dataClienteEditar').value;
+    const cpfCliente = document.getElementById('cpfClienteEditar').value;
+    const origemCliente = document.querySelector('input[name="origem"]:checked').value;
+    const scoreCliente = document.getElementById('scoreClienteEditar').value;
+
+    const cliente = {nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente};
+    console.log(cliente);
+    console.log(clientes);
+
+    clientes[indexCliente-1] = cliente;
+
+    console.log(clientes);
+
+
+    document.getElementById('clienteFormEditar').reset();
+
+    alert(`Cliente ${cliente.nomeCliente} Editado com Sucesso!`);
 }
 
 function formRemoverCliente(){
-    document.getElementById('adicionarDados').style.display = 'none';
-    document.getElementById('listarDados').style.display = 'none';
-    document.getElementById('editarDados').style.display = 'none';
-    document.getElementById('removerDados').style.display = 'block';
+    listarCliente();
+
+    const removerDadosContainer = document.getElementById('removerDadosContainer');
+    removerDadosContainer.innerHTML = '';
+
+    removerDadosContainer.innerHTML += `
+         <h3>Remover Clientes</h3>
+
+        <label for="indexCliente">Digite o ID do cliente: </label>
+        <input type="number" id="indexCliente">
+    `;
+}
+
+function removerCliente(){
+
 }
