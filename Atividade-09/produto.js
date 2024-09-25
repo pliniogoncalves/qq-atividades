@@ -10,21 +10,21 @@ function formCadastrarProduto(){
         `;
 }
 
-function listar(){
+function listarProduto(){
     document.getElementById('adicionarDados').style.display = 'none';
     document.getElementById('listarDados').style.display = 'block';
     document.getElementById('editarDados').style.display = 'none';
     document.getElementById('removerDados').style.display = 'none';
 }
 
-function editar(){
+function editarProduto(){
     document.getElementById('adicionarDados').style.display = 'none';
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'block';
     document.getElementById('removerDados').style.display = 'none';
 }
 
-function remover(){
+function removerProduto(){
     document.getElementById('adicionarDados').style.display = 'none';
     document.getElementById('listarDados').style.display = 'none';
     document.getElementById('editarDados').style.display = 'none';

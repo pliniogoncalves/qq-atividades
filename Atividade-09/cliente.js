@@ -51,11 +51,22 @@ function cadastrarCliente(){
     alert(`Cliente ${cliente.nomeCliente} Cadastrado com Sucesso!`);
 }
 
-function listar(){
-    document.getElementById('adicionarDados').style.display = 'none';
-    document.getElementById('listarDados').style.display = 'block';
-    document.getElementById('editarDados').style.display = 'none';
-    document.getElementById('removerDados').style.display = 'none';
+function listarCliente(){
+    const listarDadosContainer = document.getElementById('listarDadosContainer');
+    listarDadosContainer.innerHTML = '';
+
+    clientes.forEach((cliente, index) => {
+        listarDadosContainer.innerHTML += `
+            <h3>
+                Cliente ${index + 1} <br>
+                Nome: ${cliente.nomeCliente} <br>
+                Data de Nascimento: ${cliente.dataCliente} <br>
+                CPF: ${cliente.cpfCliente} <br>
+                Origem: ${cliente.origemCliente} <br>
+                Score: ${cliente.scoreCliente} <br>
+            </h3>
+        `;
+    })
 }
 
 function editar(){

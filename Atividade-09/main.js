@@ -32,6 +32,28 @@ function listar(){
     document.getElementById('listarDados').style.display = 'block';
     document.getElementById('editarDados').style.display = 'none';
     document.getElementById('removerDados').style.display = 'none';
+
+    const opcaoListar = document.getElementById('opcaoListar').value;
+    const listarDadosContainer = document.getElementById('listarDadosContainer');
+    listarDadosContainer.innerHTML = '';
+
+    switch(true){
+        case(opcaoListar === 'Cliente'):
+            listarCliente();
+            break;
+        case(opcaoListar === 'Categoria'):
+            listarCategoria();
+            break;
+        case(opcaoListar === 'Produto'):
+            ListarProduto();
+            break;
+        case(opcaoListar === 'Vendedor'):
+            listarVendedor();
+            break;
+        case(opcaoListar === 'Pedido'):
+            listarPedido();
+            break;
+    }
 }
 
 function editar(){
