@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vagas</title>
+</head>
+<body>
+    <h1> Sistema de Controle de Vagas de Estacionamento </h1>
+
+    <p>
+        Construa uma solução em HTML e JavaScript que permita gerenciar o uso das vagas de um 
+        estacionamento. As vagas podem ser: 'C' para carros, 'M' para motos e 'B' para bicicletas. A 
+        aplicação deve: <br>
+        <ul>
+            <li>Aceitar entradas dos tipos de veículos que ocupam as vagas.</li>
+            <li>Armazenar cada entrada em um array.</li>
+            <li>Exibir a lista atualizada de tipos de veículos e o total de cada tipo após cada entrada.</li>
+            <li>Calcular e exibir a porcentagem de cada tipo de veículo sobre o total de vagas ocupadas.</li>
+            <li>Permitir alterar o tipo de veículo armazenado em uma determinada posição do array.</li>
+            <li>Finalizar a inserção de dados quando o usuário digitar 'F'.</li>
+        </ul> 
+    </p>
+
+    <div id="cadastroVeiculos" style="display: block;">
+        <h2>Cadastrar Veiculos</h2>
+        <label for="novoVeiculo">Digite 'C' para carros, 'M' para motos e 'B' para bicicletas:</label> <br>
+        <input type="text" id="novoVeiculo">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div id="listarVeiculos" style="display: block;">
+        <h2>Lista de Veiculos</h2>
+        <div id="listarVeiculosContainer"></div>
+    </div>
+
+    <div id="contarVeiculos" style="display: block;">
+        <h2>Contagem de Veiculos</h2>
+        <div id="contarVeiculosContainer"></div>
+    </div>
+
+    <div id="porcentagemVeiculos" style="display: block;">
+        <h2>Porcentagem de Veiculos</h2>
+        <div id="porcentagemVeiculosContainer"></div>
+    </div>
+
+    <div id="alterarVeiculos" style="display: block;">
+        <h2>Alterar Veiculos</h2>
+        <label for="veiculoSubstituto">Digite 'C' para carros, 'M' para motos e 'B' para bicicletas:</label>
+        <input type="text" id="veiculoSubstituto"> <br>
+        <label for="posicaoVeiculo">Digite a Posição do Veiculo na lista:</label>
+        <input type="number" id="posicaoVeiculo"> <br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+
+    <script src="veiculos.js"></script>
+</body>
+</html>
