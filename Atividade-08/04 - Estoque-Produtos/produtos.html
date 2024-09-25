@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de Produtos</title>
+</head>
+<body>
+    <h1> Gerenciamento de Estoque de Produtos Eletrônicos </h1>
+
+    <p>
+        Construa uma solução em HTML e JavaScript que permita fazer o controle do estoque de 
+        produtos eletrônicos em uma loja. Os tipos de produtos são: 'C' para celulares, 'T' para 
+        televisores e 'N' para notebooks. A aplicação deve: <br>
+        <ul>
+            <li>Aceitar entradas dos tipos de produtos.</li>
+            <li>Armazenar cada entrada em um array.</li>
+            <li>Exibir a lista atualizada de produtos e o total de cada tipo após cada entrada.</li>
+            <li>Calcular e exibir a porcentagem de cada tipo de produto sobre o total de itens inseridos.</li>
+            <li>Permitir alterar o tipo de produto armazenado em uma determinada posição do array.</li>
+            <li>Finalizar a inserção de dados quando o usuário digitar 'F'.</li>
+        </ul> 
+    </p>
+
+    <div id="cadastroProdutos" style="display: block;">
+        <h2>Cadastrar Produtos</h2>
+        <label for="novoProduto">Digite 'C' para celulares, 'T' para televisores e 'N' para notebooks:</label> <br>
+        <input type="text" id="novoProduto">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <div id="listarProdutos" style="display: block;">
+        <h2>Lista de Produtos</h2>
+        <div id="listarProdutosContainer"></div>
+    </div>
+
+    <div id="contarProdutos" style="display: block;">
+        <h2>Contagem de Produtos</h2>
+        <div id="contarProdutosContainer"></div>
+    </div>
+
+    <div id="porcentagemProdutos" style="display: block;">
+        <h2>Porcentagem de Produtos</h2>
+        <div id="porcentagemProdutosContainer"></div>
+    </div>
+
+    <div id="alterarProdutos" style="display: block;">
+        <h2>Alterar Produtos</h2>
+        <label for="produtoSubstituto">Digite 'C' para celulares, 'T' para televisores e 'N' para notebooks:</label>
+        <input type="text" id="produtoSubstituto"> <br>
+        <label for="posicaoProduto">Digite a Posição do Produto na lista:</label>
+        <input type="number" id="posicaoProdutos"> <br>
+        <button onclick="alterar()">Alterar</button>
+    </div>
+
+    <script src="produtos.js"></script>
+</body>
+</html>
