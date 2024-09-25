@@ -1,10 +1,13 @@
-let clientes = [];
+let produtos = [];
 
-function adicionar(){
-    document.getElementById('adicionarDados').style.display = 'block';
-    document.getElementById('listarDados').style.display = 'none';
-    document.getElementById('editarDados').style.display = 'none';
-    document.getElementById('removerDados').style.display = 'none';   
+function adicionarProduto(){
+    const adicionarDadosContainer = document.getElementById('adicionarDadosContainer');
+        adicionarDadosContainer.innerHTML = '';
+
+        adicionarDadosContainer.innerHTML += `
+            <h3>Adicionar produto</h3>
+            <h2>teste</h2>
+        `;
 }
 
 function listar(){

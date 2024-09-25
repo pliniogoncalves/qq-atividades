@@ -15,6 +15,13 @@
 
     <div id="adicionarDados" style="display: none;">
         <h2>Adicionar Dados</h2>
+        
+        <select id="escolhaOpcao" onchange="adicionar()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Produto">Produto</option>
+        </select>
+
         <div id="adicionarDadosContainer" style="display: block;"></div>
     </div>
 
@@ -33,6 +40,8 @@
         <div id="removerDadosContainer" style="display: block;"></div>
     </div>
 
-    <script src="loja.js"></script>
+    <script src="main.js"></script>
+    <script src="cliente.js"></script>
+    <script src="produto.js"></script>
 </body>
 </html>
