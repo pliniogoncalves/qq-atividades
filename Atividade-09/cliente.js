@@ -57,8 +57,6 @@ function listarCliente(){
 
     clientes.forEach((cliente, index) => {
         listarDadosContainer.innerHTML += `
-            <h3>Listar Clientes</h3>
-
             <h4>
                 Cliente ID ${index + 1} <br>
                 Nome: ${cliente.nomeCliente} <br>
@@ -77,7 +75,7 @@ function formEditarCliente(){
     editarDadosContainer.innerHTML = '';
 
     editarDadosContainer.innerHTML += `
-         <h3>Editar Clientes</h3>
+        <h3>Editar Clientes</h3>
 
         <form id="clienteFormEditar">
 
@@ -139,11 +137,16 @@ function formRemoverCliente(){
     removerDadosContainer.innerHTML += `
          <h3>Remover Clientes</h3>
 
-        <label for="indexCliente">Digite o ID do cliente: </label>
-        <input type="number" id="indexCliente">
+        <label for="indexClienteRemover">Digite o ID do cliente: </label>
+        <input type="number" id="indexClienteRemover"><br>
+        <button onclick="removerCliente()">Remover</button>
+
     `;
 }
 
 function removerCliente(){
+    const indexCliente = document.getElementById('indexClienteRemover').value;
+    clientes.splice(indexCliente - 1, 1);
 
+    alert(`Cliente Removido com sucesso!`);
 }
