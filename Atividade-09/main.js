@@ -45,7 +45,7 @@ function listar(){
             listarCategoria();
             break;
         case(opcaoListar === 'Produto'):
-            ListarProduto();
+            listarProduto();
             break;
         case(opcaoListar === 'Vendedor'):
             listarVendedor();
