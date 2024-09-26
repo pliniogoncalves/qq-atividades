@@ -176,7 +176,7 @@ function formRemoverCliente(){
     removerDadosContainer.innerHTML += `
          <h3>Remover Clientes</h3>
 
-        <label for="indexClienteRemover">Digite o ID do cliente: </label>
+        <label for="indexClienteRemover">Digite o ID do Cliente: </label>
         <input type="number" id="indexClienteRemover" oninput="mostrarDadosRemoverCliente()"><br>
         <div id="dadosClienteRemover"></div>
         <button onclick="removerCliente()">Remover</button
