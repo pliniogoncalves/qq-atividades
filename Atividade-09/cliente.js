@@ -1,4 +1,4 @@
-let clientes = [];
+let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
 
 function formCadastrarCliente(){
   
@@ -20,9 +20,9 @@ function formCadastrarCliente(){
                 <input type="text" id="cpfCliente" required><br><br>
 
                 <label>Origem:</label>
-                <input type="radio" id="clienteOrigemLoja" name="origem" value="loja" required>
+                <input type="radio" id="clienteOrigemLoja" name="origem" value="Loja" required>
                 <label for="clienteOrigemLoja">Loja</label>
-                <input type="radio" id="clienteOrigemSite" name="origem" value="site">
+                <input type="radio" id="clienteOrigemSite" name="origem" value="Site">
                 <label for="clienteOrigemSite">Site</label><br><br>
 
                 <label for="scoreCliente">Score: </label>
@@ -38,16 +38,26 @@ function cadastrarCliente(){
     const nomeCliente = document.getElementById('nomeCliente').value;
     const dataCliente = document.getElementById('dataCliente').value;
     const cpfCliente = document.getElementById('cpfCliente').value;
-    const origemCliente = document.querySelector('input[name="origem"]:checked').value;
+    const origemCliente = document.querySelector('input[name="origem"]').value;
     const scoreCliente = document.getElementById('scoreCliente').value;
 
-    const cliente = {nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente};
+    if (!nomeCliente || !dataCliente || !cpfCliente || !origemCliente || !scoreCliente) {
+        alert("Por favor, preencha todos os campos e selecione a origem (Loja ou Site).");
+        return;
+    }
+
+    const cliente = {
+        nomeCliente,
+        dataCliente,
+        cpfCliente,
+        origemCliente,
+        scoreCliente
+    };
+
     clientes.push(cliente);
+    localStorage.setItem('clientes', JSON.stringify(clientes));
 
     document.getElementById('clienteFormCadastrar').reset();
-
-    console.log(clientes);
-
     alert(`Cliente ${cliente.nomeCliente} Cadastrado com Sucesso!`);
 }
 
@@ -80,7 +90,7 @@ function formEditarCliente(){
         <form id="clienteFormEditar">
 
                 <label for="indexClienteEditar">Digite o ID do cliente: </label>
-                <input type="number" id="indexClienteEditar"><br>
+                <input type="number" id="indexClienteEditar" oninput="preencherDadosEditarCliente()"><br>
 
                 <label for="nomeClienteEditar">Nome: </label>
                 <input type="text" id="nomeClienteEditar" required><br><br>
@@ -92,9 +102,9 @@ function formEditarCliente(){
                 <input type="text" id="cpfClienteEditar" required><br><br>
 
                 <label>Origem:</label>
-                <input type="radio" id="clienteOrigemLojaEditar" name="origem" value="loja" required>
+                <input type="radio" id="clienteOrigemLojaEditar" name="origem" value="Loja" required>
                 <label for="clienteOrigemLojaEditar">Loja</label>
-                <input type="radio" id="clienteOrigemSiteEditar" name="origem" value="site">
+                <input type="radio" id="clienteOrigemSiteEditar" name="origem" value="Site">
                 <label for="clienteOrigemSiteEditar">Site</label><br><br>
 
                 <label for="scoreClienteEditar">Score: </label>
@@ -106,30 +116,59 @@ function formEditarCliente(){
     `;
 }
 
+function preencherDadosEditarCliente() {
+    const indexCliente = parseInt(document.getElementById('indexClienteEditar').value);
+    
+    if (!isNaN(indexCliente) && indexCliente >= 1 && indexCliente <= clientes.length) {
+        const cliente = clientes[indexCliente - 1];
+        
+        document.getElementById('nomeClienteEditar').value = cliente.nomeCliente;
+        document.getElementById('dataClienteEditar').value = cliente.dataCliente;
+        document.getElementById('cpfClienteEditar').value = cliente.cpfCliente;
+        document.getElementById('scoreClienteEditar').value = cliente.scoreCliente;
+        
+        if (cliente.origemCliente === "loja") {
+            document.getElementById('clienteOrigemLojaEditar').checked = true;
+        } else {
+            document.getElementById('clienteOrigemSiteEditar').checked = true;
+        }
+    }
+}
+
 function editarCliente(){
-    const indexCliente = document.getElementById('indexClienteEditar').value;
+    const indexCliente = parseInt(document.getElementById('indexClienteEditar').value);
     const nomeCliente = document.getElementById('nomeClienteEditar').value;
     const dataCliente = document.getElementById('dataClienteEditar').value;
     const cpfCliente = document.getElementById('cpfClienteEditar').value;
-    const origemCliente = document.querySelector('input[name="origem"]:checked').value;
+    const origemCliente = document.querySelector('input[name="origem"]').value;
     const scoreCliente = document.getElementById('scoreClienteEditar').value;
 
-    const cliente = {nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente};
-    console.log(cliente);
-    console.log(clientes);
+    if (isNaN(indexCliente) || indexCliente < 1 || indexCliente > clientes.length) {
+        alert("ID inválido! Por favor, insira um ID válido.");
+        return;
+    }
+
+    if (!nomeCliente || !dataCliente || !cpfCliente || !origemCliente || !scoreCliente) {
+        alert("Por favor, preencha todos os campos e selecione a origem (Loja ou Site).");
+        return;
+    }
+
+    const cliente = {
+        nomeCliente,
+        dataCliente,
+        cpfCliente,
+        origemCliente,
+        scoreCliente
+    };
 
     clientes[indexCliente-1] = cliente;
-
-    console.log(clientes);
-
+    localStorage.setItem('clientes', JSON.stringify(clientes));
 
     document.getElementById('clienteFormEditar').reset();
-
     alert(`Cliente ${cliente.nomeCliente} Editado com Sucesso!`);
 }
 
 function formRemoverCliente(){
-    listarCliente();
 
     const removerDadosContainer = document.getElementById('removerDadosContainer');
     removerDadosContainer.innerHTML = '';
@@ -138,15 +177,49 @@ function formRemoverCliente(){
          <h3>Remover Clientes</h3>
 
         <label for="indexClienteRemover">Digite o ID do cliente: </label>
-        <input type="number" id="indexClienteRemover"><br>
-        <button onclick="removerCliente()">Remover</button>
+        <input type="number" id="indexClienteRemover" oninput="mostrarDadosRemoverCliente()"><br>
+        <div id="dadosClienteRemover"></div>
+        <button onclick="removerCliente()">Remover</button
 
     `;
 }
 
-function removerCliente(){
-    const indexCliente = document.getElementById('indexClienteRemover').value;
-    clientes.splice(indexCliente - 1, 1);
+function mostrarDadosRemoverCliente() {
+    const indexCliente = parseInt(document.getElementById('indexClienteRemover').value);
+    const dadosClienteRemover = document.getElementById('dadosClienteRemover');
+    
+    if (!isNaN(indexCliente) && indexCliente >= 1 && indexCliente <= clientes.length) {
+        const cliente = clientes[indexCliente - 1];
+        dadosClienteRemover.innerHTML = `
+            <h4>
+                Nome: ${cliente.nomeCliente} <br>
+                Data de Nascimento: ${cliente.dataCliente} <br>
+                CPF: ${cliente.cpfCliente} <br>
+                Origem: ${cliente.origemCliente} <br>
+                Score: ${cliente.scoreCliente} <br>
+            </h4>
+        `;
+    } else {
+        dadosClienteRemover.innerHTML = "";
+    }
+}
 
-    alert(`Cliente Removido com sucesso!`);
+function removerCliente() {
+    const indexCliente = parseInt(document.getElementById('indexClienteRemover').value);
+
+    if (isNaN(indexCliente) || indexCliente < 1 || indexCliente > clientes.length) {
+        alert("ID inválido! Por favor, insira um ID válido.");
+        return;
+    }
+
+    const confirmacao = confirm(`Tem certeza que deseja remover o cliente: ${clientes[indexCliente - 1].nomeCliente}?`);
+    
+    if (confirmacao) {
+        clientes.splice(indexCliente - 1, 1);
+        localStorage.setItem('clientes', JSON.stringify(clientes));
+
+        alert('Cliente removido com sucesso!')
+
+        document.getElementById('dadosClienteRemover').innerHTML = "";
+    }
 }
