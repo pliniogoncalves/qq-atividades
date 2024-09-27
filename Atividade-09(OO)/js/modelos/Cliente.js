@@ -7,7 +7,7 @@ export class Cliente {
         this.score = score;
     }
 
-    salvar() {
+    salvarClientes() {
         let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
         clientes.push(this);
         localStorage.setItem('clientes', JSON.stringify(clientes));
