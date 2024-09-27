@@ -29,9 +29,9 @@ export function formCadastrarProduto(){
         const categoriaProduto = document.getElementById('categoriaProduto');
         categoriaProduto.innerHTML = '';
 
-        categorias.forEach((categoria, index) => {
+        categorias.forEach((categoria) => {
             const option = document.createElement('option');
-            option.value = index + 1; 
+            option.value = categoria.nome; 
             option.textContent = categoria.nome;
             categoriaProduto.appendChild(option);
         });
@@ -102,9 +102,9 @@ export function formEditarProduto(){
         const categoriaProdutoEditar = document.getElementById('categoriaProdutoEditar');
         categoriaProdutoEditar.innerHTML = '';
 
-        categorias.forEach((categoria, index) => {
+        categorias.forEach((categoria) => {
             const option = document.createElement('option');
-            option.value = index + 1; 
+            option.value = categoria.nome; 
             option.textContent = categoria.nome;
             categoriaProdutoEditar.appendChild(option);
         });

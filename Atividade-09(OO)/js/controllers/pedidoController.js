@@ -107,7 +107,7 @@ export function listarPedido(){
         listarDadosContainer.innerHTML += `
             <h4>
                 Pedido ID ${index + 1} <br>
-                Nome CLiente: ${pedido.cliente} <br>
+                Cliente: ${pedido.cliente} <br>
                 Data do Pedido: ${pedido.dataPedido} <br>
                 Vendedor: ${pedido.vendedor} <br>
                 Produto: ${pedido.produto} <br>
