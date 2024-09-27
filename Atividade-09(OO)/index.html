@@ -4,40 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja ABC</title>
+
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <h1>Loja ABC</h1>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="listar()">Listar</button>
+    <button onclick="editar()">Editar</button>
+    <button onclick="remover()">Remover</button>
 
-    <section>
-        <h2>Cadastrar Cliente</h2>
-        <form id="formCadastrarCliente">
-            <label for="nomeCliente">Nome: </label>
-            <input type="text" id="nomeCliente" required><br>
 
-            <label for="dataNascimentoCliente">Data de Nascimento: </label>
-            <input type="date" id="dataNascimentoCliente" required><br>
+    <section id="cadastrarDados" style="display: none;">
+        <h2>Adicionar Dados</h2>
+        
+        <select id="opcaoCadastrar" onchange="cadastrar()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Produto">Produto</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Pedido">Pedido</option>
+        </select>
 
-            <label for="cpfCliente">CPF: </label>
-            <input type="text" id="cpfCliente" required><br>
-
-            <label for="origemCliente">Origem: </label>
-            <select id="origemCliente">
-                <option value="Loja">Loja</option>
-                <option value="Site">Site</option>
-            </select><br>
-
-            <label for="scoreCliente">Score: </label>
-            <input type="number" id="scoreCliente" required><br>
-
-            <button type="button" onclick="cadastrarCliente()">Cadastrar Cliente</button>
-        </form>
+        <section id="cadastrarDadosContainer" style="display: block;"></section>
     </section>
 
-    <button type="button" onclick="listarClientes()">Listar Clientes</button>
+    <section id="listarDados" style="display: none;"> 
+        <h2>Listar Dados</h2>
 
-    <div id="output"></div>
+        <select id="opcaoListar" onchange="listar()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Produto">Produto</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Pedido">Pedido</option>
+        </select>
 
-    <script type="module" src="./js/Loja.js"></script>
+        <section id="listarDadosContainer" style="display: block;"></section>
+    </section>
+
+    <section id="editarDados" style="display: none;">
+        <h2>Editar Dados</h2>
+
+        <select id="opcaoEditar" onchange="editar()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Produto">Produto</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Pedido">Pedido</option>
+        </select>
+
+        <section id="editarDadosContainer" style="display: block;"></section>
+    </section>
+
+    <section id="removerDados" style="display: none;">
+        <h2>Remover Dados</h2>
+
+        <select id="opcaoRemover" onchange="remover()">
+            <option value="">Escolha</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Produto">Produto</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Pedido">Pedido</option>
+        </select> 
+
+        <section id="removerDadosContainer" style="display: block;"></section>
+
+    </section>
+
+    <script type="module" src="Loja.js"></script>
+
 </body>
 </html>
