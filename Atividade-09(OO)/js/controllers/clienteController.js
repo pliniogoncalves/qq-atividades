@@ -42,7 +42,9 @@ window.cadastrarCliente = function() {
     }
 
     const novoCliente = new Cliente(nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente);
-    novoCliente.salvarClientes();
+    const mensagem = novoCliente.salvarClientes();
+
+    alert(mensagem);
 }
 
 export function listarClientes() {

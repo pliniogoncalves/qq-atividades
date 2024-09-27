@@ -11,7 +11,8 @@ export class Cliente {
         let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
         clientes.push(this);
         localStorage.setItem('clientes', JSON.stringify(clientes));
-        alert(`Cliente ${this.nome} cadastrado com sucesso!`);
+
+        return(`Cliente ${this.nome} cadastrado com sucesso!`);
     }
 
     static listarClientes() {
