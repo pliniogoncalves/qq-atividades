@@ -20,9 +20,9 @@ export function formCadastrarCliente() {
             </select><br>
 
             <label for="scoreCliente">Score:</label>
-            <input type="number" id="scoreCliente"><br>
+            <input type="number" id="scoreCliente"><br><br>
 
-            <button type="button" onclick="cadastrarCliente()">Cadastrar</button>
+            <button id="buttonCadastrar" type="button" onclick="cadastrarCliente()">Cadastrar</button>
         </form>
     `;
 }
@@ -92,7 +92,7 @@ export function formEditarCliente() {
                 <label for="scoreClienteEditar">Score: </label>
                 <input type="number" id="scoreClienteEditar" required><br><br>
 
-                <button type="button" onclick="editarCliente()">Editar</button>
+                <button id="buttonEditar" type="button" onclick="editarCliente()">Editar</button>
         </form>
     `;
 }
@@ -137,8 +137,8 @@ export function formRemoverCliente() {
 
         <label for="indexClienteRemover">Digite o ID do Cliente: </label>
         <input type="number" id="indexClienteRemover" oninput="mostrarDadosRemoverCliente()"><br>
-        <div id="dadosClienteRemover"></div>
-        <button type="button" onclick="removerCliente()">Remover</button>
+        <div id="dadosClienteRemover"></div><br>
+        <button id="buttonRemover" type="button" onclick="removerCliente()">Remover</button>
     `;
 }
 
