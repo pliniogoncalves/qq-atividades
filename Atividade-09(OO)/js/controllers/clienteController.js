@@ -165,4 +165,6 @@ window.mostrarDadosRemoverCliente = function() {
 window.removerCliente = function() {
     const indexCliente = parseInt(document.getElementById('indexClienteRemover').value) - 1;
     Cliente.removerCliente(indexCliente);
+
+    document.getElementById('listarClientesContainer').innerHTML = '';
 }

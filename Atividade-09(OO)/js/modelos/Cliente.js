@@ -34,6 +34,8 @@ export class Cliente {
             clientes.splice(index, 1);
             localStorage.setItem('clientes', JSON.stringify(clientes));
             alert('Cliente removido com sucesso!');
+        } else {
+            alert('ID de cliente inválido!');
         }
     }
 }

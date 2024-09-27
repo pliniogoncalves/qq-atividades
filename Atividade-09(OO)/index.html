@@ -8,73 +8,81 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1>Loja ABC</h1>
-    <button onclick="cadastrar()">Cadastrar</button>
-    <button onclick="listar()">Listar</button>
-    <button onclick="editar()">Editar</button>
-    <button onclick="remover()">Remover</button>
+    <header>
+        <h1>Loja ABC</h1>
+        <nav>
+            <button onclick="cadastrar()">Cadastrar</button>
+            <button onclick="listar()">Listar</button>
+            <button onclick="editar()">Editar</button>
+            <button onclick="remover()">Remover</button>
+        </nav>
+    </header>
 
+    <main>
+        <section id="cadastrarDados" class="form-section" style="display: none;">
+            <h2>Adicionar Dados</h2>
+            <form id="formCadastrar">
+                <label for="opcaoCadastrar">Selecione a opção</label>
+                <select id="opcaoCadastrar" onchange="cadastrar()">
+                    <option value="">Escolha</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Categoria">Categoria</option>
+                    <option value="Produto">Produto</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Pedido">Pedido</option>
+                </select>
+                <div id="cadastrarDadosContainer"></div>
+            </form>
+        </section>
 
-    <section id="cadastrarDados" style="display: none;">
-        <h2>Adicionar Dados</h2>
-        
-        <select id="opcaoCadastrar" onchange="cadastrar()">
-            <option value="">Escolha</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Categoria">Categoria</option>
-            <option value="Produto">Produto</option>
-            <option value="Vendedor">Vendedor</option>
-            <option value="Pedido">Pedido</option>
-        </select>
+        <section id="listarDados" class="form-section" style="display: none;">
+            <h2>Listar Dados</h2>
+            <form id="formListar">
+                <label for="opcaoListar">Selecione a opção</label>
+                <select id="opcaoListar" onchange="listar()">
+                    <option value="">Escolha</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Categoria">Categoria</option>
+                    <option value="Produto">Produto</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Pedido">Pedido</option>
+                </select>
+                <div id="listarDadosContainer"></div>
+            </form>
+        </section>
 
-        <section id="cadastrarDadosContainer" style="display: block;"></section>
-    </section>
+        <section id="editarDados" class="form-section" style="display: none;">
+            <h2>Editar Dados</h2>
+            <form id="formEditar">
+                <label for="opcaoEditar">Selecione a opção</label>
+                <select id="opcaoEditar" onchange="editar()">
+                    <option value="">Escolha</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Categoria">Categoria</option>
+                    <option value="Produto">Produto</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Pedido">Pedido</option>
+                </select>
+                <div id="editarDadosContainer"></div>
+            </form>
+        </section>
 
-    <section id="listarDados" style="display: none;"> 
-        <h2>Listar Dados</h2>
-
-        <select id="opcaoListar" onchange="listar()">
-            <option value="">Escolha</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Categoria">Categoria</option>
-            <option value="Produto">Produto</option>
-            <option value="Vendedor">Vendedor</option>
-            <option value="Pedido">Pedido</option>
-        </select>
-
-        <section id="listarDadosContainer" style="display: block;"></section>
-    </section>
-
-    <section id="editarDados" style="display: none;">
-        <h2>Editar Dados</h2>
-
-        <select id="opcaoEditar" onchange="editar()">
-            <option value="">Escolha</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Categoria">Categoria</option>
-            <option value="Produto">Produto</option>
-            <option value="Vendedor">Vendedor</option>
-            <option value="Pedido">Pedido</option>
-        </select>
-
-        <section id="editarDadosContainer" style="display: block;"></section>
-    </section>
-
-    <section id="removerDados" style="display: none;">
-        <h2>Remover Dados</h2>
-
-        <select id="opcaoRemover" onchange="remover()">
-            <option value="">Escolha</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Categoria">Categoria</option>
-            <option value="Produto">Produto</option>
-            <option value="Vendedor">Vendedor</option>
-            <option value="Pedido">Pedido</option>
-        </select> 
-
-        <section id="removerDadosContainer" style="display: block;"></section>
-
-    </section>
+        <section id="removerDados" class="form-section" style="display: none;">
+            <h2>Remover Dados</h2>
+            <form id="formRemover">
+                <label for="opcaoRemover">Selecione a opção</label>
+                <select id="opcaoRemover" onchange="remover()">
+                    <option value="">Escolha</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Categoria">Categoria</option>
+                    <option value="Produto">Produto</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Pedido">Pedido</option>
+                </select>
+                <div id="removerDadosContainer"></div>
+            </form>
+        </section>
+    </main>
 
     <script type="module" src="Loja.js"></script>
 
