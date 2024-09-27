@@ -51,6 +51,8 @@ window.cadastrarProduto = function(){
    const mensagem = novoProduto.salvarProduto();
    alert(mensagem);
 
+   document.querySelector('form').reset();
+
 }
 
 export function listarProduto(){
@@ -63,7 +65,7 @@ export function listarProduto(){
             <h4>
                 Produto ID ${index + 1} <br>
                 Nome: ${produto.nome} <br>
-                Valor: ${produto.valor} <br>
+                Valor: R$${produto.valor} <br>
                 Categoria: ${produto.categoria} <br>
             </h4>
             <br><hr><br>

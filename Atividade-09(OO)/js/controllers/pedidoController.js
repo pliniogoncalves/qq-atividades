@@ -40,9 +40,9 @@ window.preencherSelectPedido = function(editar = false){
     const nomeClientePedido = document.getElementById(editar? 'nomeClientePedidoEditar':'nomeClientePedido');
     nomeClientePedido.innerHTML = '';
 
-    clientes.forEach((cliente, index) => {
+    clientes.forEach((cliente) => {
         const option = document.createElement('option');
-        option.value = index + 1; 
+        option.value = cliente.nome; 
         option.textContent = cliente.nome;
         nomeClientePedido.appendChild(option);
     });
@@ -51,9 +51,9 @@ window.preencherSelectPedido = function(editar = false){
     const nomeVendedorPedido = document.getElementById(editar? 'nomeVendedorPedidoEditar':'nomeVendedorPedido');
     nomeVendedorPedido.innerHTML = '';
 
-    vendedores.forEach((vendedor, index) => {
+    vendedores.forEach((vendedor) => {
         const option = document.createElement('option');
-        option.value = index + 1; 
+        option.value = vendedor.nome; 
         option.textContent = vendedor.nome;
         nomeVendedorPedido.appendChild(option);
     });
@@ -64,16 +64,15 @@ window.preencherSelectPedido = function(editar = false){
     valorProdutoPedido.textContent = `R$${produtos[0].valor}`;
     nomeProdutoPedido.innerHTML = '';
 
-    produtos.forEach((produto, index) => {
+    produtos.forEach((produto) => {
         const option = document.createElement('option');
-        option.value = index +1; 
+        option.value = produto.nome; 
         option.textContent = produto.nome;
         nomeProdutoPedido.appendChild(option);
     });
 
     nomeProdutoPedido.addEventListener('change', (event) => {
-        const indexSelecionado = event.target.value - 1;
-        const produtoSelecionado = produtos[indexSelecionado];
+        const produtoSelecionado = produtos.find(produto => produto.nome === event.target.value);
         
         if (produtoSelecionado) {
             valorProdutoPedido.textContent = `R$${produtoSelecionado.valor}`;
@@ -96,6 +95,13 @@ window.cadastrarPedido = function(){
     const novoPedido = new Pedido(nomeClientePedido, dataPedido, nomeVendedorPedido, nomeProdutoPedido, valorProdutoPedido);
     const mensagem = novoPedido.salvarPedido();
     alert(mensagem);
+
+    document.querySelector('form').reset();
+    document.getElementById('nomeClientePedido').value = '';
+    document.getElementById('dataPedido').value = '';
+    document.getElementById('nomeVendedorPedido').value = '';
+    document.getElementById('nomeProdutoPedido').value = '';
+    document.getElementById('valorProdutoPedido').textContent = '';
 }
 
 export function listarPedido(){
@@ -156,49 +162,47 @@ export function formEditarPedido(){
 window.preencherDadosEditarPedido = function() {
     const indexPedido = parseInt(document.getElementById('indexPedidoEditar').value);
     
-    if (!isNaN(indexPedido) && indexPedido >= 1 && indexPedido <= pedidos.length) {
-        const pedido = pedidos[indexPedido - 1];
+    if (!isNaN(indexPedido) && indexPedido >= 1 && indexPedido <= Pedido.listarPedido().length) {
+        const pedido = Pedido.listarPedido()[indexPedido - 1];
         
-        document.getElementById('nomeClientePedidoEditar').value = pedido.nomeClientePedido;
+        document.getElementById('nomeClientePedidoEditar').value = pedido.cliente;
         document.getElementById('dataPedidoEditar').value = pedido.dataPedido;
-        document.getElementById('nomeVendedorPedidoEditar').value = pedido.nomeVendedorPedido;
-        document.getElementById('nomeProdutoPedidoEditar').value = pedido.nomeProdutoPedido;
-        document.getElementById('valorProdutoPedidoEditar').textContent = pedido.valorProdutoPedido;
+        document.getElementById('nomeVendedorPedidoEditar').value = pedido.vendedor;
+        document.getElementById('nomeProdutoPedidoEditar').value = pedido.produto;
+        document.getElementById('valorProdutoPedidoEditar').textContent = pedido.valorProduto;
         
     }
 }
 
 window.editarPedido = function(){
-    const indexPedido = parseInt(document.getElementById('indexPedidoEditar').value);
+    const indexPedido = parseInt(document.getElementById('indexPedidoEditar').value) -1;
     const nomeClientePedido = document.getElementById('nomeClientePedidoEditar').value;
     const dataPedido = document.getElementById('dataPedidoEditar').value;
     const nomeVendedorPedido = document.getElementById('nomeVendedorPedidoEditar').value;
     const nomeProdutoPedido = document.getElementById('nomeProdutoPedidoEditar').value;
     const valorProdutoPedido = document.getElementById('valorProdutoPedidoEditar').textContent;
 
-    if (isNaN(indexPedido) || indexPedido < 1 || indexPedido > pedidos.length) {
+    if (isNaN(indexPedido) || indexPedido < 1 || indexPedido > Pedido.listarPedido().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    if (!nomeClientePedido || !dataPedido || !nomeVendedorPedido || !nomeProdutoPedido) {
+    if (!nomeClientePedido || !dataPedido || !nomeVendedorPedido || !nomeProdutoPedido || !valorProdutoPedido) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    const pedido = {
-        nomeClientePedido,
-        dataPedido,
-        nomeVendedorPedido,
-        nomeProdutoPedido,
-        valorProdutoPedido
-    };
+    const pedidoAtualizado = new Pedido(nomeClientePedido, dataPedido, nomeVendedorPedido, nomeProdutoPedido, valorProdutoPedido);
+    const mensagem = Pedido.editarPedido(indexPedido, pedidoAtualizado);
+    alert(mensagem);
 
-    pedidos[indexPedido-1] = pedido;
-    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    document.getElementById('indexPedidoEditar').value = '';
+    document.getElementById('nomeClientePedidoEditar').value = '';
+    document.getElementById('dataPedidoEditar').value = '';
+    document.getElementById('nomeVendedorPedidoEditar').value = '';
+    document.getElementById('nomeProdutoPedidoEditar').value = '';
+    document.getElementById('valorProdutoPedidoEditar').textContent = '';
 
-    document.getElementById('pedidoFormEditar').reset();
-    alert(`Pedido Editado com Sucesso!`);
 }
 
 export function formRemoverPedido(){
@@ -220,16 +224,16 @@ window.mostrarDadosRemoverPedido = function() {
     const indexPedido = parseInt(document.getElementById('indexPedidoRemover').value);
     const dadosPedidoRemover = document.getElementById('dadosPedidoRemover');
     
-    if (!isNaN(indexPedido) && indexPedido >= 1 && indexPedido <= pedidos.length) {
-        const pedido = pedidos[indexPedido - 1];
+    if (!isNaN(indexPedido) && indexPedido >= 1 && indexPedido <= Pedido.listarPedido().length) {
+        const pedido = Pedido.listarPedido()[indexPedido - 1];
         dadosPedidoRemover.innerHTML = `
              <h4>
                 Pedido ID ${indexPedido} <br>
-                Nome CLiente: ${pedido.nomeClientePedido} <br>
+                Nome CLiente: ${pedido.cliente} <br>
                 Data do Pedido: ${pedido.dataPedido} <br>
-                Vendedor: ${pedido.nomeVendedorPedido} <br>
-                Produto: ${pedido.nomeProdutoPedido} <br>
-                Valor do Produto: ${pedido.valorProdutoPedido} <br>
+                Vendedor: ${pedido.vendedor} <br>
+                Produto: ${pedido.produto} <br>
+                Valor do Produto: ${pedido.valorProduto} <br>
             </h4>
         `;
     } else {
@@ -238,21 +242,15 @@ window.mostrarDadosRemoverPedido = function() {
 }
 
 window.removerPedido = function() {
-    const indexPedido = parseInt(document.getElementById('indexPedidoRemover').value);
+    const indexPedido = parseInt(document.getElementById('indexPedidoRemover').value) -1;
 
-    if (isNaN(indexPedido) || indexPedido < 1 || indexPedido > pedidos.length) {
+    if (isNaN(indexPedido) || indexPedido < 1 || indexPedido > Pedido.listarPedido().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    const confirmacao = confirm(`Tem certeza que deseja remover o Pedido: ${indexPedido}?`);
-    
-    if (confirmacao) {
-        pedidos.splice(indexPedido - 1, 1);
-        localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    const mensagem = Pedido.removerPedido(indexPedido);
+    alert(mensagem);
 
-        alert('Pedido removido com sucesso!')
-
-        document.getElementById('dadosPedidoRemover').innerHTML = "";
-    }
+    document.getElementById('dadosPedidoRemover').innerHTML = '';
 }

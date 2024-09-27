@@ -29,7 +29,7 @@ export class Pedido {
         if (index >= 0 && index < pedidos.length) {
             pedidos[index] = pedidoAtualizado;
             localStorage.setItem('pedidos', JSON.stringify(pedidos));
-            return(`Pedido ${pedidoAtualizado.nome} editado com sucesso!`);
+            return(`Pedido ${index+1} editado com sucesso!`);
         }
     }
 
