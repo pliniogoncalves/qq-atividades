@@ -169,12 +169,13 @@ window.mostrarDadosRemoverProduto = function() {
     const indexProduto = parseInt(document.getElementById('indexProdutoRemover').value);
     const dadosProdutoRemover = document.getElementById('dadosProdutoRemover');
     
-    if (!isNaN(indexProduto) && indexProduto >= 1 && indexProduto <= produtos.length) {
-        const produto = produtos[indexProduto - 1];
+    if (!isNaN(indexProduto) && indexProduto >= 1 && indexProduto <= Produto.listarProduto().length) {
+        const produto = Produto.listarProduto()[indexProduto - 1];
         dadosProdutoRemover.innerHTML = `
             <h4>
-                Nome: ${produto.nomeProduto} <br>
-                Valor: ${produto.valorProduto} <br>
+                Nome: ${produto.nome} <br>
+                Valor: ${produto.valor} <br>
+                categoria: ${produto.categoria}
             </h4>
         `;
     } else {
@@ -183,21 +184,13 @@ window.mostrarDadosRemoverProduto = function() {
 }
 
 window.removerProduto = function() {
-    const indexProduto = parseInt(document.getElementById('indexProdutoRemover').value);
+    const indexProduto = parseInt(document.getElementById('indexProdutoRemover').value) -1;
 
-    if (isNaN(indexProduto) || indexProduto < 1 || indexProduto > produtos.length) {
+    if (isNaN(indexProduto) || indexProduto < 1 || indexProduto > Produto.listarProduto().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    const confirmacao = confirm(`Tem certeza que deseja remover o Produto: ${produtos[indexProduto - 1].nomeProduto}?`);
-    
-    if (confirmacao) {
-        produtos.splice(indexProduto - 1, 1);
-        localStorage.setItem('produtos', JSON.stringify(produtos));
-
-        alert('Produto removido com sucesso!')
-
-        document.getElementById('dadosProdutoRemover').innerHTML = "";
-    }
+    const mensagem = Produto.removerProduto(indexProduto);
+    alert(mensagem);
 }
