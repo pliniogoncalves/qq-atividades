@@ -27,6 +27,14 @@ import {
 } from './js/controllers/produtoController.js';
 
 
+import { 
+    formCadastrarPedido, 
+    listarPedido, 
+    formEditarPedido, 
+    formRemoverPedido 
+} from './js/controllers/pedidoController.js';
+
+
 window.cadastrar = function(){
     document.getElementById('cadastrarDados').style.display = 'block';
     document.getElementById('listarDados').style.display = 'none';

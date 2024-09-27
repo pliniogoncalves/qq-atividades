@@ -1,6 +1,8 @@
-let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+import { Cliente } from '../modelos/Cliente.js';
+import { Vendedor } from '../modelos/Vendedor.js';
+import { Produto } from '../modelos/Produto.js';
 
-function formCadastrarPedido(){
+export function formCadastrarPedido(){
     const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
     cadastrarDadosContainer.innerHTML = '';
 
