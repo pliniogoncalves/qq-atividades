@@ -2,7 +2,9 @@ import { Cliente } from '../modelos/Cliente.js';
 
 export function formCadastrarCliente() {
     const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
-    cadastrarDadosContainer.innerHTML = `
+    cadastrarDadosContainer.innerHTML = '';
+
+    cadastrarDadosContainer.innerHTML += `
         <form id="clienteForm">
             <label for="nomeCliente">Nome:</label>
             <input type="text" id="nomeCliente"><br>
