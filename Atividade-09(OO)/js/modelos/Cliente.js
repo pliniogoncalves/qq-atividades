@@ -1,3 +1,5 @@
+import { Pedido } from './Pedido.js';
+
 export class Cliente {
     constructor(nome, dataNascimento, cpf, origem, score) {
         this.nome = nome;

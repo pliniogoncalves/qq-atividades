@@ -1,4 +1,4 @@
-import { cliente } from './Cliente.js';
+import { Cliente } from './Cliente.js';
 import { Vendedor } from './Vendedor.js';
 import { Produto } from './Produto.js';
 
@@ -16,7 +16,7 @@ export class Pedido {
         pedidos.push(this);
         localStorage.setItem('pedidos', JSON.stringify(pedidos));
 
-        return(`Pedido ${this.nome} cadastrado com sucesso!`);
+        return(`Pedido ${pedidos.length} cadastrado com sucesso!`);
     }
 
     static listarPedido() {

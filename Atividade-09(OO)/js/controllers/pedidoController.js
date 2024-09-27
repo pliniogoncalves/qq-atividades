@@ -1,6 +1,7 @@
 import { Cliente } from '../modelos/Cliente.js';
 import { Vendedor } from '../modelos/Vendedor.js';
 import { Produto } from '../modelos/Produto.js';
+import { Pedido } from '../modelos/Pedido.js';
 
 export function formCadastrarPedido(){
     const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
@@ -26,7 +27,7 @@ export function formCadastrarPedido(){
             <label for="valorProdutoPedido">Valor do Produto: </label>
             <span id="valorProdutoPedido"></span><br><br>
 
-            <button type="button" onclick="cadastrarPedido()">Cadastrar</button>
+            <button id="buttonCadastrar" type="button" onclick="cadastrarPedido()">Cadastrar</button>
 
         </form>
     `;
@@ -34,39 +35,39 @@ export function formCadastrarPedido(){
     preencherSelectPedido();
 }
 
-function preencherSelectPedido(editar = false){
-    const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+window.preencherSelectPedido = function(editar = false){
+    const clientes = Cliente.listarClientes();
     const nomeClientePedido = document.getElementById(editar? 'nomeClientePedidoEditar':'nomeClientePedido');
     nomeClientePedido.innerHTML = '';
 
     clientes.forEach((cliente, index) => {
         const option = document.createElement('option');
         option.value = index + 1; 
-        option.textContent = cliente.nomeCliente;
+        option.textContent = cliente.nome;
         nomeClientePedido.appendChild(option);
     });
 
-    const vendedores = JSON.parse(localStorage.getItem('vendedores')) || [];
+    const vendedores = Vendedor.listarVendedor();
     const nomeVendedorPedido = document.getElementById(editar? 'nomeVendedorPedidoEditar':'nomeVendedorPedido');
     nomeVendedorPedido.innerHTML = '';
 
     vendedores.forEach((vendedor, index) => {
         const option = document.createElement('option');
         option.value = index + 1; 
-        option.textContent = vendedor.nomeVendedor;
+        option.textContent = vendedor.nome;
         nomeVendedorPedido.appendChild(option);
     });
 
-    const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+    const produtos = Produto.listarProduto();
     const nomeProdutoPedido = document.getElementById(editar? 'nomeProdutoPedidoEditar':'nomeProdutoPedido');
     const valorProdutoPedido = document.getElementById(editar? 'valorProdutoPedidoEditar':'valorProdutoPedido');
-    valorProdutoPedido.textContent = `R$${produtos[0].valorProduto}`;
+    valorProdutoPedido.textContent = `R$${produtos[0].valor}`;
     nomeProdutoPedido.innerHTML = '';
 
     produtos.forEach((produto, index) => {
         const option = document.createElement('option');
         option.value = index +1; 
-        option.textContent = produto.nomeProduto;
+        option.textContent = produto.nome;
         nomeProdutoPedido.appendChild(option);
     });
 
@@ -75,12 +76,12 @@ function preencherSelectPedido(editar = false){
         const produtoSelecionado = produtos[indexSelecionado];
         
         if (produtoSelecionado) {
-            valorProdutoPedido.textContent = produtoSelecionado.valorProduto;
+            valorProdutoPedido.textContent = `R$${produtoSelecionado.valor}`;
         }
     });
 }
 
-function cadastrarPedido(){
+window.cadastrarPedido = function(){
     const nomeClientePedido = document.getElementById('nomeClientePedido').value;
     const dataPedido = document.getElementById('dataPedido').value;
     const nomeVendedorPedido = document.getElementById('nomeVendedorPedido').value;
@@ -92,22 +93,12 @@ function cadastrarPedido(){
         return;
     }
 
-    const pedido = {
-        nomeClientePedido,
-        dataPedido,
-        nomeVendedorPedido,
-        nomeProdutoPedido,
-        valorProdutoPedido
-    };
-
-    pedidos.push(pedido);
-    localStorage.setItem('pedidos', JSON.stringify(pedidos));
-
-    document.getElementById('pedidoFormCadastrar').reset();
-    alert(`Pedido Cadastrado com Sucesso!`);
+    const novoPedido = new Pedido(nomeClientePedido, dataPedido, nomeVendedorPedido, nomeProdutoPedido, valorProdutoPedido);
+    const mensagem = novoPedido.salvarPedido();
+    alert(mensagem);
 }
 
-function listarPedido(){
+export function listarPedido(){
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -121,11 +112,12 @@ function listarPedido(){
                 Produto: ${pedido.nomeProdutoPedido} <br>
                 Valor do Produto: ${pedido.valorProdutoPedido} <br>
             </h4>
+            <br><hr><br>
         `;
     })
 }
 
-function formEditarPedido(){
+export function formEditarPedido(){
 
     const editarDadosContainer = document.getElementById('editarDadosContainer');
     editarDadosContainer.innerHTML = '';
@@ -153,14 +145,14 @@ function formEditarPedido(){
             <label for="valorProdutoPedidoEditar">Valor do Produto: </label>
             <span id="valorProdutoPedidoEditar"></span><br><br>
 
-            <button type="button" onclick="editarPedido()">Editar</button>
+            <button id="buttonEditar" type="button" onclick="editarPedido()">Editar</button>
 
         </form>
     `;
     preencherSelectPedido(true);
 }
 
-function preencherDadosEditarPedido() {
+window.preencherDadosEditarPedido = function() {
     const indexPedido = parseInt(document.getElementById('indexPedidoEditar').value);
     
     if (!isNaN(indexPedido) && indexPedido >= 1 && indexPedido <= pedidos.length) {
@@ -175,7 +167,7 @@ function preencherDadosEditarPedido() {
     }
 }
 
-function editarPedido(){
+window.editarPedido = function(){
     const indexPedido = parseInt(document.getElementById('indexPedidoEditar').value);
     const nomeClientePedido = document.getElementById('nomeClientePedidoEditar').value;
     const dataPedido = document.getElementById('dataPedidoEditar').value;
@@ -208,7 +200,7 @@ function editarPedido(){
     alert(`Pedido Editado com Sucesso!`);
 }
 
-function formRemoverPedido(){
+export function formRemoverPedido(){
 
     const removerDadosContainer = document.getElementById('removerDadosContainer');
     removerDadosContainer.innerHTML = '';
@@ -219,11 +211,11 @@ function formRemoverPedido(){
         <label for="indexPedidoRemover">Digite o ID do Pedido: </label>
         <input type="number" id="indexPedidoRemover" oninput="mostrarDadosRemoverPedido()"><br>
         <div id="dadosPedidoRemover"></div>
-        <button onclick="removerPedido()">Remover</button
+        <button id="buttonRemover" onclick="removerPedido()">Remover</button
     `;
 }
 
-function mostrarDadosRemoverPedido() {
+window.mostrarDadosRemoverPedido = function() {
     const indexPedido = parseInt(document.getElementById('indexPedidoRemover').value);
     const dadosPedidoRemover = document.getElementById('dadosPedidoRemover');
     
@@ -244,7 +236,7 @@ function mostrarDadosRemoverPedido() {
     }
 }
 
-function removerPedido() {
+window.removerPedido = function() {
     const indexPedido = parseInt(document.getElementById('indexPedidoRemover').value);
 
     if (isNaN(indexPedido) || indexPedido < 1 || indexPedido > pedidos.length) {
