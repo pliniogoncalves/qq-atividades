@@ -49,7 +49,8 @@ export function listarVendedor(){
                 Vendedor ID ${index + 1} <br>
                 Nome: ${vendedor.nome} <br>
                 matricula: ${vendedor.matricula} <br>
-            <br></h4><br>
+            </h4>
+            <br><hr><br>
         `;
     })
 }
@@ -82,21 +83,21 @@ export function formEditarVendedor(){
 window.preencherDadosEditarVendedor = function() {
     const indexVendedor = parseInt(document.getElementById('indexVendedorEditar').value);
     
-    if (!isNaN(indexVendedor) && indexVendedor >= 1 && indexVendedor <= vendedores.length) {
-        const vendedor = vendedores[indexVendedor - 1];
+    if (!isNaN(indexVendedor) && indexVendedor >= 1 && indexVendedor <= Vendedor.listarVendedor().length) {
+        const vendedor = Vendedor.listarVendedor()[indexVendedor - 1];
         
-        document.getElementById('nomeVendedorEditar').value = vendedor.nomeVendedor;
-        document.getElementById('matriculaVendedorEditar').value = vendedor.matriculaVendedor;
+        document.getElementById('nomeVendedorEditar').value = vendedor.nome;
+        document.getElementById('matriculaVendedorEditar').value = vendedor.matricula;
         
     }
 }
 
 window.editarVendedor = function(){
-    const indexVendedor = parseInt(document.getElementById('indexVendedorEditar').value);
+    const indexVendedor = parseInt(document.getElementById('indexVendedorEditar').value)-1;
     const nomeVendedor = document.getElementById('nomeVendedorEditar').value;
     const matriculaVendedor = document.getElementById('matriculaVendedorEditar').value;
 
-    if (isNaN(indexVendedor) || indexVendedor < 1 || indexVendedor > vendedores.length) {
+    if (isNaN(indexVendedor) || indexVendedor < 1 || indexVendedor > Vendedor.listarVendedor().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
@@ -106,16 +107,12 @@ window.editarVendedor = function(){
         return;
     }
 
-    const vendedor = {
-        nomeVendedor,
-        matriculaVendedor
-    };
+    const vendedorAtualizado = new Vendedor(nomeVendedor, matriculaVendedor);
+    const mensagem = Vendedor.editarVendedor(indexVendedor, vendedorAtualizado);
+    alert(mensagem);
 
-    vendedores[indexVendedor-1] = vendedor;
-    localStorage.setItem('vendedores', JSON.stringify(vendedores));
-
-    document.getElementById('vendedorFormEditar').reset();
-    alert(`Vendedor ${vendedor.nomeVendedor} Editado com Sucesso!`);
+    document.getElementById('nomeVendedorEditar').value = '';
+    document.getElementById('matriculaVendedorEditar').value = '';
 }
 
 export function formRemoverVendedor(){
@@ -138,12 +135,12 @@ window.mostrarDadosRemoverVendedor = function() {
     const indexVendedor = parseInt(document.getElementById('indexVendedorRemover').value);
     const dadosVendedorRemover = document.getElementById('dadosVendedorRemover');
     
-    if (!isNaN(indexVendedor) && indexVendedor >= 1 && indexVendedor <= vendedores.length) {
-        const vendedor = vendedores[indexVendedor - 1];
+    if (!isNaN(indexVendedor) && indexVendedor >= 1 && indexVendedor <= Vendedor.listarVendedor().length) {
+        const vendedor = Vendedor.listarVendedor()[indexVendedor - 1];
         dadosVendedorRemover.innerHTML = `
             <h4>
-                Nome: ${vendedor.nomeVendedor} <br>
-                Matricula: ${vendedor.matriculaVendedor} <br>
+                Nome: ${vendedor.nome} <br>
+                Matricula: ${vendedor.matricula} <br>
             </h4>
         `;
     } else {
@@ -152,21 +149,15 @@ window.mostrarDadosRemoverVendedor = function() {
 }
 
 window.removerVendedor = function() {
-    const indexVendedor = parseInt(document.getElementById('indexVendedorRemover').value);
+    const indexVendedor = parseInt(document.getElementById('indexVendedorRemover').value) -1;
 
-    if (isNaN(indexVendedor) || indexVendedor < 1 || indexVendedor > vendedores.length) {
+    if (isNaN(indexVendedor) || indexVendedor < 1 || indexVendedor > Vendedor.listarVendedor().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    const confirmacao = confirm(`Tem certeza que deseja remover o Vendedor: ${vendedores[indexVendedor - 1].nomeVendedor}?`);
-    
-    if (confirmacao) {
-        vendedores.splice(indexVendedor - 1, 1);
-        localStorage.setItem('vendedores', JSON.stringify(vendedores));
+   const mensagem = Vendedor.removerVendedor(indexVendedor);
+   alert(mensagem);
 
-        alert('Vendedor removido com sucesso!')
-
-        document.getElementById('dadosVendedorRemover').innerHTML = "";
-    }
+   document.getElementById('dadosVendedorRemover').innerHTML = '';
 }
