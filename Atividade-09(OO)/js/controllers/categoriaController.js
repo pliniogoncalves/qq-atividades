@@ -45,7 +45,7 @@ export function listarCategoria(){
         listarDadosContainer.innerHTML += `
             <h4>
                 Categoria ID ${index + 1} <br>
-                Nome: ${categoria.nomeCategoria} <br>
+                Nome: ${categoria.nome} <br>
             </h4>
             <br><hr><br>
         `;
@@ -63,7 +63,7 @@ export function formEditarCategoria(){
         <form id="categoriaFormEditar">
 
                 <label for="indexCategoriaEditar">Digite o ID da Categoria: </label>
-                <input type="number" id="indexCategoriaEditar" oninput="preencherDadosEditarCategoria()"><br>
+                <input type="number" id="indexCategoriaEditar" oninput="mostrarDadosEditarCategoria()"><br>
 
                 <label for="nomeCategoriaEditar">Nome: </label>
                 <input type="text" id="nomeCategoriaEditar" required><br><br>
@@ -74,40 +74,32 @@ export function formEditarCategoria(){
     `;
 }
 
-window.preencherDadosEditarCategoria = function() {
+window.mostrarDadosEditarCategoria = function() {
     const indexCategoria = parseInt(document.getElementById('indexCategoriaEditar').value);
     
-    if (!isNaN(indexCategoria) && indexCategoria >= 1 && indexCategoria <= categorias.length) {
-        const categoria = categorias[indexCategoria - 1];
+    if (!isNaN(indexCategoria) && indexCategoria >= 1 && indexCategoria <= Categoria.listarCategorias().length) {
+        const categoria = Categoria.listarCategorias()[indexCategoria -1];
 
-        document.getElementById('nomeCategoriaEditar').value = categoria.nomeCategoria;
+        document.getElementById('nomeCategoriaEditar').value = categoria.nome;
     }          
         
 }
 
 window.editarCategoria = function(){
-    const indexCategoria = parseInt(document.getElementById('indexCategoriaEditar').value);
+    const indexCategoria = parseInt(document.getElementById('indexCategoriaEditar').value) - 1;
     const nomeCategoria = document.getElementById('nomeCategoriaEditar').value;
-
-    if (isNaN(indexCategoria) || indexCategoria < 1 || indexCategoria > categorias.length) {
-        alert("ID inválido! Por favor, insira um ID válido.");
-        return;
-    }
 
     if (!nomeCategoria) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    const categoria = {
-        nomeCategoria
-    };
+    const categoriaAtualizado = new Categoria(nomeCategoria);
+    const mensagem = Categoria.editarCategoria(indexCategoria, categoriaAtualizado);
+    alert(mensagem);
 
-    categorias[indexCategoria-1] = categoria;
-    localStorage.setItem('categorias', JSON.stringify(categorias));
-
-    document.getElementById('categoriaFormEditar').reset();
-    alert(`Categoria ${categoria.nomeCategoria} Editado com Sucesso!`);
+    document.getElementById('indexCategoriaEditar').value = '';
+    document.getElementById('nomeCategoriaEditar').value = '';
 }
 
 export function formRemoverCategoria(){
