@@ -64,7 +64,7 @@ export function listarClientes() {
                 Origem: ${cliente.origem} <br>
                 Score: ${cliente.score} <br>
             </h4>
-            <hr>
+            <br><hr><br>
         `;
     });
 }

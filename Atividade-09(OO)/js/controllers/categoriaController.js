@@ -37,6 +37,7 @@ window.cadastrarCategoria = function(){
 }
 
 export function listarCategoria(){
+    const categorias = Categoria.listarCategorias();
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -46,6 +47,7 @@ export function listarCategoria(){
                 Categoria ID ${index + 1} <br>
                 Nome: ${categoria.nomeCategoria} <br>
             </h4>
+            <br><hr><br>
         `;
     })
 }
