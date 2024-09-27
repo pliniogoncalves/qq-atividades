@@ -16,7 +16,7 @@ export function formCadastrarVendedor(){
                 <label for="matriculaVendedor">Matricula: </label>
                 <input type="number" id="matriculaVendedor" required><br><br>
 
-                <button type="button" onclick="cadastrarVendedor()">Cadastrar</button>
+                <button id="buttonCadastrar" type="button" onclick="cadastrarVendedor()">Cadastrar</button>
 
             </form>
         `;
@@ -31,16 +31,11 @@ window.cadastrarVendedor = function(){
         return;
     }
 
-    const vendedor = {
-        nomeVendedor,
-        matriculaVendedor
-    };
+    const novoVendedor = new Vendedor(nomeVendedor, matriculaVendedor);
+    const mensagem = novoVendedor.salvarVendedor();
+    alert(mensagem);
 
-    vendedores.push(vendedor);
-    localStorage.setItem('vendedores', JSON.stringify(vendedores));
-
-    document.getElementById('vendedorFormCadastrar').reset();
-    alert(`Vendedor ${vendedor.nomeVendedor} Cadastrado com Sucesso!`);
+    document.querySelector('form').reset();
 }
 
 export function listarVendedor(){
@@ -53,7 +48,7 @@ export function listarVendedor(){
                 Vendedor ID ${index + 1} <br>
                 Nome: ${vendedor.nomeVendedor} <br>
                 matricula: ${vendedor.matriculaVendedor} <br>
-            </h4>
+            <br></h4><br>
         `;
     })
 }
@@ -77,7 +72,7 @@ export function formEditarVendedor(){
                 <label for="matriculaVendedorEditar">Matricula: </label>
                 <input type="number" id="matriculaVendedorEditar" required><br><br>
 
-                <button type="button" onclick="editarVendedor()">Editar</button>
+                <button id="buttonEditar" type="button" onclick="editarVendedor()">Editar</button>
 
         </form>
     `;
@@ -133,7 +128,7 @@ export function formRemoverVendedor(){
         <label for="indexVendedorRemover">Digite o ID do Vendedor: </label>
         <input type="number" id="indexVendedorRemover" oninput="mostrarDadosRemoverVendedor()"><br>
         <div id="dadosVendedorRemover"></div>
-        <button onclick="removerVendedor()">Remover</button
+        <button id="buttonRemover" onclick="removerVendedor()">Remover</button
 
     `;
 }

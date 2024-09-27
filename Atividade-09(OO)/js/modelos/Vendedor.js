@@ -9,7 +9,7 @@ export class Vendedor{
         vendedores.push(this);
         localStorage.setItem('vendedores', JSON.stringify(vendedores));
 
-        return(`vendedor ${this.nome} cadastrado com sucesso!`);
+        return(`Vendedor ${this.nome} cadastrado com sucesso!`);
     }
 
     static listarVendedor() {
