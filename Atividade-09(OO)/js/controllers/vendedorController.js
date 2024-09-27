@@ -1,6 +1,6 @@
-let vendedores = JSON.parse(localStorage.getItem('vendedores')) || [];
+import { Vendedor } from '../modelos/Vendedor.js';
 
-function formCadastrarVendedor(){
+export function formCadastrarVendedor(){
   
         const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
         cadastrarDadosContainer.innerHTML = '';
@@ -22,7 +22,7 @@ function formCadastrarVendedor(){
         `;
 }
 
-function cadastrarVendedor(){
+window.cadastrarVendedor = function(){
     const nomeVendedor = document.getElementById('nomeVendedor').value;
     const matriculaVendedor = document.getElementById('matriculaVendedor').value;
 
@@ -43,7 +43,7 @@ function cadastrarVendedor(){
     alert(`Vendedor ${vendedor.nomeVendedor} Cadastrado com Sucesso!`);
 }
 
-function listarVendedor(){
+export function listarVendedor(){
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -58,7 +58,7 @@ function listarVendedor(){
     })
 }
 
-function formEditarVendedor(){
+export function formEditarVendedor(){
 
     const editarDadosContainer = document.getElementById('editarDadosContainer');
     editarDadosContainer.innerHTML = '';
@@ -83,7 +83,7 @@ function formEditarVendedor(){
     `;
 }
 
-function preencherDadosEditarVendedor() {
+window.preencherDadosEditarVendedor = function() {
     const indexVendedor = parseInt(document.getElementById('indexVendedorEditar').value);
     
     if (!isNaN(indexVendedor) && indexVendedor >= 1 && indexVendedor <= vendedores.length) {
@@ -95,7 +95,7 @@ function preencherDadosEditarVendedor() {
     }
 }
 
-function editarVendedor(){
+window.editarVendedor = function(){
     const indexVendedor = parseInt(document.getElementById('indexVendedorEditar').value);
     const nomeVendedor = document.getElementById('nomeVendedorEditar').value;
     const matriculaVendedor = document.getElementById('matriculaVendedorEditar').value;
@@ -122,7 +122,7 @@ function editarVendedor(){
     alert(`Vendedor ${vendedor.nomeVendedor} Editado com Sucesso!`);
 }
 
-function formRemoverVendedor(){
+export function formRemoverVendedor(){
 
     const removerDadosContainer = document.getElementById('removerDadosContainer');
     removerDadosContainer.innerHTML = '';
@@ -138,7 +138,7 @@ function formRemoverVendedor(){
     `;
 }
 
-function mostrarDadosRemoverVendedor() {
+window.mostrarDadosRemoverVendedor = function() {
     const indexVendedor = parseInt(document.getElementById('indexVendedorRemover').value);
     const dadosVendedorRemover = document.getElementById('dadosVendedorRemover');
     
@@ -155,7 +155,7 @@ function mostrarDadosRemoverVendedor() {
     }
 }
 
-function removerVendedor() {
+window.removerVendedor = function() {
     const indexVendedor = parseInt(document.getElementById('indexVendedorRemover').value);
 
     if (isNaN(indexVendedor) || indexVendedor < 1 || indexVendedor > vendedores.length) {

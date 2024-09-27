@@ -12,6 +12,13 @@ import {
     formRemoverCategoria 
 } from './js/controllers/categoriaController.js';
 
+import { 
+    formCadastrarVendedor, 
+    listarVendedor, 
+    formEditarVendedor, 
+    formRemoverVendedor 
+} from './js/controllers/vendedorController.js';
+
 
 window.cadastrar = function(){
     document.getElementById('cadastrarDados').style.display = 'block';
