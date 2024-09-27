@@ -1,6 +1,7 @@
-let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+import { Produto } from '../modelos/Produto.js';
+import { Categoria } from '../modelos/Categoria.js';
 
-function formCadastrarProduto(){
+export function formCadastrarProduto(){
   
         const cadastrarDadosContainer = document.getElementById('cadastrarDadosContainer');
         cadastrarDadosContainer.innerHTML = '';
@@ -16,34 +17,44 @@ function formCadastrarProduto(){
                 <label for="valorProduto">Valor: </label>
                 <input type="number" id="valorProduto" required><br><br>
 
-                <button type="button" onclick="cadastrarProduto()">Cadastrar</button>
+                <label for="categoriaProduto">Categoria:</label>
+                 <select id="categoriaProduto"></select><br><br>
+
+                <button id="buttonCadastrar" type="button" onclick="cadastrarProduto()">Cadastrar</button>
 
             </form>
         `;
+
+        const categorias = Categoria.listarCategorias();
+        const categoriaProduto = document.getElementById('categoriaProduto');
+        categoriaProduto.innerHTML = '';
+
+        categorias.forEach((categoria, index) => {
+            const option = document.createElement('option');
+            option.value = index + 1; 
+            option.textContent = categoria.nome;
+            categoriaProduto.appendChild(option);
+        });
 }
 
-function cadastrarProduto(){
+window.cadastrarProduto = function(){
     const nomeProduto = document.getElementById('nomeProduto').value;
     const valorProduto = document.getElementById('valorProduto').value;
-
-    if (!nomeProduto || !valorProduto) {
+    const categoriaProduto = document.getElementById('categoriaProduto').value;
+    
+    if (!nomeProduto || !valorProduto || !categoriaProduto) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    const produto = {
-        nomeProduto,
-        valorProduto
-    };
+   const novoProduto = new Produto(nomeProduto, valorProduto,categoriaProduto);
+   const mensagem = novoProduto.salvarProduto();
+   alert(mensagem);
 
-    produtos.push(produto);
-    localStorage.setItem('produtos', JSON.stringify(produtos));
-
-    document.getElementById('produtoFormCadastrar').reset();
-    alert(`Produto ${produto.nomeProduto} Cadastrado com Sucesso!`);
 }
 
-function listarProduto(){
+export function listarProduto(){
+    const produtos = Produto.listarProduto();
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -51,14 +62,16 @@ function listarProduto(){
         listarDadosContainer.innerHTML += `
             <h4>
                 Produto ID ${index + 1} <br>
-                Nome: ${produto.nomeProduto} <br>
-                Valor: ${produto.valorProduto} <br>
+                Nome: ${produto.nome} <br>
+                Valor: ${produto.valor} <br>
+                Categoria: ${produto.categoria} <br>
             </h4>
+            <br><hr><br>
         `;
     })
 }
 
-function formEditarProduto(){
+export function formEditarProduto(){
 
     const editarDadosContainer = document.getElementById('editarDadosContainer');
     editarDadosContainer.innerHTML = '';
@@ -77,13 +90,13 @@ function formEditarProduto(){
                 <label for="valorProdutoEditar">Valor: </label>
                 <input type="number" id="valorProdutoEditar" required><br><br>
 
-                <button type="button" onclick="editarProduto()">Editar</button>
+                <button id="buttonEditar" type="button" onclick="editarProduto()">Editar</button>
 
         </form>
     `;
 }
 
-function preencherDadosEditarProduto() {
+window.preencherDadosEditarProduto = function() {
     const indexProduto = parseInt(document.getElementById('indexProdutoEditar').value);
     
     if (!isNaN(indexProduto) && indexProduto >= 1 && indexProduto <= produtos.length) {
@@ -95,7 +108,7 @@ function preencherDadosEditarProduto() {
     }
 }
 
-function editarProduto(){
+window.editarProduto = function(){
     const indexProduto = parseInt(document.getElementById('indexProdutoEditar').value);
     const nomeProduto = document.getElementById('nomeProdutoEditar').value;
     const valorProduto = document.getElementById('valorProdutoEditar').value;
@@ -122,7 +135,7 @@ function editarProduto(){
     alert(`Produto ${produto.nomeProduto} Editado com Sucesso!`);
 }
 
-function formRemoverProduto(){
+export function formRemoverProduto(){
 
     const removerDadosContainer = document.getElementById('removerDadosContainer');
     removerDadosContainer.innerHTML = '';
@@ -133,12 +146,12 @@ function formRemoverProduto(){
         <label for="indexProdutoRemover">Digite o ID do Produto: </label>
         <input type="number" id="indexProdutoRemover" oninput="mostrarDadosRemoverProduto()"><br>
         <div id="dadosProdutoRemover"></div>
-        <button onclick="removerProduto()">Remover</button
+        <button id="buttonRemover" onclick="removerProduto()">Remover</button
 
     `;
 }
 
-function mostrarDadosRemoverProduto() {
+window.mostrarDadosRemoverProduto = function() {
     const indexProduto = parseInt(document.getElementById('indexProdutoRemover').value);
     const dadosProdutoRemover = document.getElementById('dadosProdutoRemover');
     
@@ -155,7 +168,7 @@ function mostrarDadosRemoverProduto() {
     }
 }
 
-function removerProduto() {
+window.removerProduto = function() {
     const indexProduto = parseInt(document.getElementById('indexProdutoRemover').value);
 
     if (isNaN(indexProduto) || indexProduto < 1 || indexProduto > produtos.length) {
