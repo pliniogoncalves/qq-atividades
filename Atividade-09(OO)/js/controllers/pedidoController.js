@@ -99,6 +99,7 @@ window.cadastrarPedido = function(){
 }
 
 export function listarPedido(){
+    const pedidos = Pedido.listarPedido();
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -106,11 +107,11 @@ export function listarPedido(){
         listarDadosContainer.innerHTML += `
             <h4>
                 Pedido ID ${index + 1} <br>
-                Nome CLiente: ${pedido.nomeClientePedido} <br>
+                Nome CLiente: ${pedido.cliente} <br>
                 Data do Pedido: ${pedido.dataPedido} <br>
-                Vendedor: ${pedido.nomeVendedorPedido} <br>
-                Produto: ${pedido.nomeProdutoPedido} <br>
-                Valor do Produto: ${pedido.valorProdutoPedido} <br>
+                Vendedor: ${pedido.vendedor} <br>
+                Produto: ${pedido.produto} <br>
+                Valor do Produto: ${pedido.valorProduto} <br>
             </h4>
             <br><hr><br>
         `;
