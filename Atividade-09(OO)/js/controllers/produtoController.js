@@ -90,49 +90,63 @@ export function formEditarProduto(){
                 <label for="valorProdutoEditar">Valor: </label>
                 <input type="number" id="valorProdutoEditar" required><br><br>
 
+                <label for="categoriaProdutoEditar">Categoria:</label>
+                 <select id="categoriaProdutoEditar"></select><br><br>
+
                 <button id="buttonEditar" type="button" onclick="editarProduto()">Editar</button>
 
         </form>
     `;
+
+    const categorias = Categoria.listarCategorias();
+        const categoriaProdutoEditar = document.getElementById('categoriaProdutoEditar');
+        categoriaProdutoEditar.innerHTML = '';
+
+        categorias.forEach((categoria, index) => {
+            const option = document.createElement('option');
+            option.value = index + 1; 
+            option.textContent = categoria.nome;
+            categoriaProdutoEditar.appendChild(option);
+        });
 }
 
 window.preencherDadosEditarProduto = function() {
     const indexProduto = parseInt(document.getElementById('indexProdutoEditar').value);
     
-    if (!isNaN(indexProduto) && indexProduto >= 1 && indexProduto <= produtos.length) {
-        const produto = produtos[indexProduto - 1];
+    if (!isNaN(indexProduto) && indexProduto >= 1 && indexProduto <= Produto.listarProduto().length) {
+        const produto = Produto.listarProduto()[indexProduto - 1];
         
-        document.getElementById('nomeProdutoEditar').value = produto.nomeProduto;
-        document.getElementById('valorProdutoEditar').value = produto.valorProduto;
+        document.getElementById('nomeProdutoEditar').value = produto.nome;
+        document.getElementById('valorProdutoEditar').value = produto.valor;
+        document.getElementById('categoriaProdutoEditar').value = produto.categoria;
         
     }
 }
 
 window.editarProduto = function(){
-    const indexProduto = parseInt(document.getElementById('indexProdutoEditar').value);
+    const indexProduto = parseInt(document.getElementById('indexProdutoEditar').value -1);
     const nomeProduto = document.getElementById('nomeProdutoEditar').value;
     const valorProduto = document.getElementById('valorProdutoEditar').value;
+    const categoriaProduto = document.getElementById('categoriaProdutoEditar').value;
 
-    if (isNaN(indexProduto) || indexProduto < 1 || indexProduto > produtos.length) {
+    if (isNaN(indexProduto) || indexProduto < 1 || indexProduto > Produto.listarProduto().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    if (!nomeProduto || !valorProduto) {
+    if (!nomeProduto || !valorProduto || !categoriaProduto) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    const produto = {
-        nomeProduto,
-        valorProduto
-    };
+    const produtoAtualizado = new Produto(nomeProduto, valorProduto, categoriaProduto);
+    const mensagem = Produto.editarProduto(indexProduto, produtoAtualizado)
+    alert(mensagem);
 
-    produtos[indexProduto-1] = produto;
-    localStorage.setItem('produtos', JSON.stringify(produtos));
-
-    document.getElementById('produtoFormEditar').reset();
-    alert(`Produto ${produto.nomeProduto} Editado com Sucesso!`);
+    document.getElementById('indexProdutoEditar').value = '';
+    document.getElementById('nomeProdutoEditar').value = '';
+    document.getElementById('valorProdutoEditar').value = '';
+    document.getElementById('categoriaProdutoEditar').value = '';
 }
 
 export function formRemoverProduto(){
