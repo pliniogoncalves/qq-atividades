@@ -5,6 +5,13 @@ import {
     formRemoverCliente 
 } from './js/controllers/clienteController.js';
 
+import { 
+    formCadastrarCategoria, 
+    listarCategoria, 
+    formEditarCategoria, 
+    formRemoverCategoria 
+} from './js/controllers/categoriaController.js';
+
 
 window.cadastrar = function(){
     document.getElementById('cadastrarDados').style.display = 'block';
