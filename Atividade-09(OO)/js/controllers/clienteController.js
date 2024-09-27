@@ -125,6 +125,11 @@ window.editarCliente = function() {
     const origemCliente = document.getElementById('origemClienteEditar').value;
     const scoreCliente = document.getElementById('scoreClienteEditar').value;
 
+    if (isNaN(indexCliente) || indexCliente < 1 || indexCliente > Cliente.listarClientes().length) {
+        alert("ID inválido! Por favor, insira um ID válido.");
+        return;
+    }
+
     if (!nomeCliente || !dataCliente || !cpfCliente || !origemCliente || !scoreCliente) {
         alert("Por favor, preencha todos os campos.");
         return;
@@ -180,6 +185,12 @@ window.mostrarDadosRemoverCliente = function() {
 
 window.removerCliente = function() {
     const indexCliente = parseInt(document.getElementById('indexClienteRemover').value) - 1;
+
+    if (isNaN(indexCliente) || indexCliente < 1 || indexCliente > Cliente.listarClientes().length) {
+        alert("ID inválido! Por favor, insira um ID válido.");
+        return;
+    }
+
     const mensagem = Cliente.removerCliente(indexCliente);
     alert(mensagem);
 

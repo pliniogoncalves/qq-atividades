@@ -89,6 +89,11 @@ window.editarCategoria = function(){
     const indexCategoria = parseInt(document.getElementById('indexCategoriaEditar').value) - 1;
     const nomeCategoria = document.getElementById('nomeCategoriaEditar').value;
 
+    if (isNaN(indexCategoria) || indexCategoria < 1 || indexCategoria > Categoria.listarCategorias().length) {
+        alert("ID inválido! Por favor, insira um ID válido.");
+        return;
+    }
+
     if (!nomeCategoria) {
         alert("Por favor, preencha todos os campos.");
         return;
@@ -111,22 +116,22 @@ export function formRemoverCategoria(){
          <h3>Remover Categorias</h3>
 
         <label for="indexCategoriaRemover">Digite o ID da Categoria: </label>
-        <input type="number" id="indexCategoriaRemover" oninput="mostrarDadosRemoverCategoria()"><br>
+        <input type="number" id="indexCategoriaRemover" oninput="preencherDadosRemoverCategoria()"><br>
         <div id="dadosCategoriaRemover"></div>
         <button id="buttonRemover" onclick="removerCategoria()">Remover</button
 
     `;
 }
 
-window.mostrarDadosRemoverCategoria = function() {
+window.preencherDadosRemoverCategoria = function() {
     const indexCategoria = parseInt(document.getElementById('indexCategoriaRemover').value);
     const dadosCategoriaRemover = document.getElementById('dadosCategoriaRemover');
     
-    if (!isNaN(indexCategoria) && indexCategoria >= 1 && indexCategoria <= categorias.length) {
-        const categoria = categorias[indexCategoria - 1];
+    if (!isNaN(indexCategoria) && indexCategoria >= 1 && indexCategoria <= Categoria.listarCategorias().length) {
+        const categoria = Categoria.listarCategorias()[indexCategoria - 1];
         dadosCategoriaRemover.innerHTML = `
             <h4>
-                Nome: ${categoria.nomeCategoria} <br>
+                Nome: ${categoria.nome} <br>
             </h4>
         `;
     } else {
@@ -135,21 +140,15 @@ window.mostrarDadosRemoverCategoria = function() {
 }
 
 window.removerCategoria = function() {
-    const indexCategoria = parseInt(document.getElementById('indexCategoriaRemover').value);
+    const indexCategoria = parseInt(document.getElementById('indexCategoriaRemover').value -1);
 
-    if (isNaN(indexCategoria) || indexCategoria < 1 || indexCategoria > categorias.length) {
+    if (isNaN(indexCategoria) || indexCategoria < 1 || indexCategoria > Categoria.listarCategorias().length) {
         alert("ID inválido! Por favor, insira um ID válido.");
         return;
     }
 
-    const confirmacao = confirm(`Tem certeza que deseja remover a categoria: ${categorias[indexCategoria - 1].nomeCategoria}?`);
-    
-    if (confirmacao) {
-        categorias.splice(indexCategoria - 1, 1);
-        localStorage.setItem('categorias', JSON.stringify(categorias));
+    const mensagem = Categoria.removerCategoria(indexCategoria);
+    alert(mensagem);
 
-        alert('Categoria removida com sucesso!')
-
-        document.getElementById('dadosCategoriaRemover').innerHTML = "";
-    }
+    document.getElementById('dadosCategoriaRemover').innerHTML = '';
 }
