@@ -45,6 +45,8 @@ window.cadastrarCliente = function() {
     const mensagem = novoCliente.salvarClientes();
 
     alert(mensagem);
+
+    document.querySelector('form').reset();
 }
 
 export function listarClientes() {
@@ -129,7 +131,17 @@ window.editarCliente = function() {
     }
 
     const clienteAtualizado = new Cliente(nomeCliente, dataCliente, cpfCliente, origemCliente, scoreCliente);
-    Cliente.editarCliente(indexCliente, clienteAtualizado);
+    const mensagem = Cliente.editarCliente(indexCliente, clienteAtualizado);
+    alert(mensagem);
+
+    document.getElementById('indexClienteEditar').value = '';
+    document.getElementById('nomeClienteEditar').value = '';
+    document.getElementById('dataClienteEditar').value = '';
+    document.getElementById('cpfClienteEditar').value = '';
+    document.getElementById('origemClienteEditar').value = '';
+    document.getElementById('scoreClienteEditar').value = '';
+
+    
 }
 
 export function formRemoverCliente() {
@@ -162,13 +174,14 @@ window.mostrarDadosRemoverCliente = function() {
             </h4>
         `;
     } else {
-        dadosClienteRemover.innerHTML = "";
+        dadosClienteRemover.innerHTML = '';
     }
 }
 
 window.removerCliente = function() {
     const indexCliente = parseInt(document.getElementById('indexClienteRemover').value) - 1;
-    Cliente.removerCliente(indexCliente);
+    const mensagem = Cliente.removerCliente(indexCliente);
+    alert(mensagem);
 
-    document.getElementById('listarClientesContainer').innerHTML = '';
+    document.getElementById('dadosClienteRemover').innerHTML = '';
 }
