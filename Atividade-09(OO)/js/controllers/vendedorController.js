@@ -39,6 +39,7 @@ window.cadastrarVendedor = function(){
 }
 
 export function listarVendedor(){
+    const vendedores = Vendedor.listarVendedor();
     const listarDadosContainer = document.getElementById('listarDadosContainer');
     listarDadosContainer.innerHTML = '';
 
@@ -46,8 +47,8 @@ export function listarVendedor(){
         listarDadosContainer.innerHTML += `
             <h4>
                 Vendedor ID ${index + 1} <br>
-                Nome: ${vendedor.nomeVendedor} <br>
-                matricula: ${vendedor.matriculaVendedor} <br>
+                Nome: ${vendedor.nome} <br>
+                matricula: ${vendedor.matricula} <br>
             <br></h4><br>
         `;
     })
